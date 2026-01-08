@@ -6,7 +6,7 @@ function Container({ children, className = "" }) {
   return <div className={["mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8", className].join(" ")}>{children}</div>
 }
 
-const linkBase = "text-xs font-semibold tracking-[0.22em] transition"
+const linkBase = "text-sm font-semibold tracking-[0.22em] transition relative group"
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -32,18 +32,18 @@ export default function Navbar() {
             <span className="grid h-9 w-9 place-items-center rounded-full glass gold-ring">
               <Watch className="h-5 w-5" />
             </span>
-            <span className="font-semibold tracking-wide">LUXE</span>
+            <span className="font-semibold tracking-wide">VINTAG</span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-8 text-white/80">
-            <NavLink to="/" end className={({ isActive }) => [linkBase, isActive ? "text-white" : "hover:text-white"].join(" ")}>HOME</NavLink>
-            <NavLink to="/products" className={({ isActive }) => [linkBase, isActive ? "text-white" : "hover:text-white"].join(" ")}>PRODUCTS</NavLink>
-            <NavLink to="/about" className={({ isActive }) => [linkBase, isActive ? "text-white" : "hover:text-white"].join(" ")}>ABOUT US</NavLink>
-            <NavLink to="/contact" className={({ isActive }) => [linkBase, isActive ? "text-white" : "hover:text-white"].join(" ")}>CONTACT US</NavLink>
+            <NavLink to="/" end className={({ isActive }) => [linkBase, isActive ? "text-white " : "    hover:text-gold-300  duration-300"].join(" ")}>HOME <span className="absolute bottom-0 left-0 h-0.5 bg-gold-300 group-hover:w-full transition-all duration-300"></span></NavLink>
+            <NavLink to="/products" className={({ isActive }) => [linkBase, isActive ? "text-white " : "   hover:text-gold-300  duration-300 "].join(" ")}>PRODUCTS <span className="absolute bottom-0 left-0 h-0.5 bg-gold-300 group-hover:w-full transition-all duration-300"></span></NavLink>
+            <NavLink to="/about" className={({ isActive }) => [linkBase, isActive ? "text-white " : "   hover:text-gold-300  duration-300"].join(" ")}>ABOUT US <span className="absolute bottom-0 left-0 h-0.5 bg-gold-300 group-hover:w-full transition-all duration-300"></span></NavLink>
+            <NavLink to="/contact" className={({ isActive }) => [linkBase, isActive ? "text-white " : "   hover:text-gold-300  duration-300"].join(" ")}>CONTACT US <span className="absolute bottom-0 left-0 h-0.5 bg-gold-300 group-hover:w-full transition-all duration-300"></span></NavLink>
           </nav>
 
           <div className="flex items-center gap-3">
-            <button className="grid h-10 w-10 place-items-center rounded-full glass hover:bg-white/10" aria-label="Search">
+            {/* <button className="grid h-10 w-10 place-items-center rounded-full glass hover:bg-white/10" aria-label="Search">
               <Search className="h-5 w-5 text-white/90" />
             </button>
             <button className="grid h-10 w-10 place-items-center rounded-full glass hover:bg-white/10" aria-label="Wishlist">
@@ -52,7 +52,7 @@ export default function Navbar() {
             <button className="relative grid h-10 w-10 place-items-center rounded-full glass hover:bg-white/10" aria-label="Cart">
               <ShoppingBag className="h-5 w-5 text-white/90" />
               <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-gold-300 text-[11px] font-extrabold text-neutral-950">2</span>
-            </button>
+            </button> */}
           </div>
         </div>
       </Container>

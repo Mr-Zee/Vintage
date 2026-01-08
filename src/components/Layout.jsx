@@ -8,7 +8,7 @@ export default function Layout() {
     <div className="min-h-screen font-body">
       <Navbar />
       {/* Sticky navbar offset */}
-      <div className="pt-20">
+      <div className="">
         <Outlet />
         <Footer />
       </div>
