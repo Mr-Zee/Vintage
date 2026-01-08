@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition; }
+  .btn-primary { @apply btn bg-gold-300 text-neutral-950 hover:bg-gold-200; }
+  .btn-outline { @apply btn bg-white/10 text-white ring-1 ring-white/20 hover:bg-white/15; }
+  .glass { @apply bg-white/5 ring-1 ring-white/10 backdrop-blur-md; }
+  .gold-ring { @apply ring-1 ring-gold-300/35; }
+}
