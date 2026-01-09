@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#7a6046] text-white/90">
       <Container className="py-14">
-        <div className="grid gap-10 md:grid-cols-4">
+        <div className="grid gap-10 md:grid-cols-3">
           <div>
             <div className="inline-flex items-center gap-2">
               <span className="grid h-10 w-10 place-items-center rounded-full bg-white/10 ring-1 ring-white/15">
@@ -60,7 +60,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          {/* <div>
             <h4 className="text-sm font-semibold tracking-wide">Newsletter</h4>
             <p className="mt-4 text-sm text-white/75">Subscribe to get special offers and updates.</p>
             <div className="mt-4 flex gap-3">
@@ -70,7 +70,7 @@ export default function Footer() {
               />
               <button className="btn bg-gold-300 text-neutral-950 hover:bg-gold-200">Subscribe</button>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="mt-12 border-t border-white/15 pt-6 text-xs text-white/70 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
