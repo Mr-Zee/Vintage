@@ -1,5 +1,12 @@
 import React from "react"
 import { Watch, Instagram, Twitter, Facebook } from "lucide-react"
+import { Link } from "react-router-dom";
+
+const supportLinks = [
+  { label: "Contact Us", to: "/contact" },
+  { label: "Shipping Info", to: "/shipping" },
+  { label: "Returns", to: "/returns" },
+];
 
 function Container({ children, className = "" }) {
   return <div className={["mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8", className].join(" ")}>{children}</div>
@@ -43,7 +50,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-white/75">
               {["Watches", "Bangles", "New Arrivals", "Best Sellers"].map((t) => (
                 <li key={t}>
-                  <a className="hover:text-white" href="#">{t}</a>
+                  <a className="hover:text-white" href="/products">{t}</a>
                 </li>
               ))}
             </ul>
@@ -52,12 +59,14 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold tracking-wide">Support</h4>
             <ul className="mt-4 space-y-3 text-sm text-white/75">
-              {["Contact Us", "Shipping Info", "Returns", "Size Guide"].map((t) => (
-                <li key={t}>
-                  <a className="hover:text-white" href="#">{t}</a>
-                </li>
-              ))}
-            </ul>
+  {supportLinks.map((item) => (
+    <li key={item.to}>
+      <Link className="hover:text-white" to={item.to}>
+        {item.label}
+      </Link>
+    </li>
+  ))}
+</ul>
           </div>
 
           {/* <div>
