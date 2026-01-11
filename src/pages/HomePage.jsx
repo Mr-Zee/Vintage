@@ -3,9 +3,9 @@ import { ChevronDown, ChevronRight } from "lucide-react"
 import SectionCard from "../components/SectionCard"
 import ProductCard from "../components/ProductCard"
 import { products } from "../data/products"
+import hero from "../Images/hero-3.jpg"
 
-const heroBg =
-  "https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?auto=format&fit=crop&w=2200&q=80"
+const heroBg = hero;
 
 const watchesCard =
   "https://images.unsplash.com/photo-1539874754764-5a96559165b0?auto=format&fit=crop&w=1800&q=80"
@@ -22,7 +22,7 @@ function Container({ children, className = "" }) {
 
 function Hero() {
   return (
-    <section className="relative min-h-[88vh] overflow-hidden bg-neutral-950">
+    <section className="relative min-h-[100vh] overflow-hidden bg-neutral-950">
       <img src={heroBg} alt="Watch movement" className="absolute inset-0 h-full w-full object-cover opacity-90" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/85" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(200,154,42,0.18),transparent_50%)]" />
