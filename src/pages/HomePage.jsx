@@ -22,7 +22,7 @@ function Container({ children, className = "" }) {
 
 function Hero() {
   return (
-    <section className="relative min-h-[100vh] overflow-hidden bg-neutral-950">
+    <section className="relative min-h-[94vh] overflow-hidden bg-neutral-950">
       <img src={heroBg} alt="Watch movement" className="absolute inset-0 h-full w-full object-cover opacity-90" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/85" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(200,154,42,0.18),transparent_50%)]" />

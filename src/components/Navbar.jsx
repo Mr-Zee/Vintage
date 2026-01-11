@@ -23,7 +23,7 @@ export default function Navbar() {
       className={[
         "fixed inset-x-0 top-0 z-50",
         "transition",
-        scrolled ? "bg-black/70 backdrop-blur-xl border-b border-white/10" : "bg-black/35 backdrop-blur-md",
+        scrolled ? "bg-black/70 backdrop-blur-xl border-b border-white/10" : "bg-black backdrop-blur-md",
       ].join(" ")}
     >
       <Container className="py-4">
