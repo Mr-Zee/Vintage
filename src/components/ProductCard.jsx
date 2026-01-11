@@ -10,11 +10,15 @@ function formatMoney(n) {
 }
 
 // ✅ WhatsApp redirect helpers
-const WHATSAPP_NUMBER = "971552682149"
+const WHATSAPP_NUMBER = "919526753878"
 const buildWhatsAppLink = (product) => {
-  const text = `Hi, I want to buy: ${product.title} (${formatMoney(
-    product.price
-  )}). Is it available?`
+  const text = `Hi, I want to buy:
+${product.title} (${formatMoney(product.price)})
+
+Image: ${product.image}
+
+Is it available?`
+
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
 }
 
