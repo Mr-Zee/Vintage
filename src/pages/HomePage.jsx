@@ -3,7 +3,7 @@ import { ChevronDown, ChevronRight } from "lucide-react"
 import SectionCard from "../components/SectionCard"
 import ProductCard from "../components/ProductCard"
 import { products } from "../data/products"
-import hero from "../Images/hero-3.jpg"
+import hero from "../Images/hero-2.jpg"
 
 const heroBg = hero;
 
