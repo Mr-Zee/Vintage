@@ -8,10 +8,12 @@ import hero from "../Images/hb1.jpg"
 const heroBg = hero;
 
 const watchesCard =
-  "https://images.unsplash.com/photo-1539874754764-5a96559165b0?auto=format&fit=crop&w=1800&q=80"
+"https://readdy.ai/api/search-image?query=elegant%20luxury%20womens%20watches%20collection%20displayed%20on%20soft%20pink%20silk%20fabric%20professional%20product%20photography%20studio%20lighting%20multiple%20rose%20gold%20and%20diamond%20watches%20sophisticated%20feminine%20arrangement%20delicate%20styling%20warm%20tones&width=800&height=1000&seq=ladycat1&orientation=portrait"
+  // "https://images.unsplash.com/photo-1539874754764-5a96559165b0?auto=format&fit=crop&w=1800&q=80"
 
 const banglesCard =
-  "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1800&q=80"
+"https://images.unsplash.com/photo-1608042314453-ae338d80c427?auto=format&fit=crop&w=1200&q=80"
+  // "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1800&q=80"
 
 const arrivalsCard =
   "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=1800&q=80"
@@ -73,7 +75,7 @@ function PromoGrid() {
           />
           <div className="grid gap-6">
             <SectionCard
-              title="Bangles"
+              title="Chains"
               subtitle="Exquisite Craftsmanship"
               priceText="From $2,799"
               cta="Explore"
