@@ -12,7 +12,7 @@ export const products = [
     movement: "Automatic",
     stone: "None",
     image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=80",
+      "https://readdy.ai/api/search-image?query=elegant%20womens%20watch%20with%20blush%20pink%20leather%20strap%20and%20rose%20gold%20case%20on%20soft%20cream%20background%20luxury%20timepiece%20professional%20product%20photography%20studio%20lighting%20feminine%20romantic%20design%20clean%20backdrop&width=600&height=600&seq=ladywatch5&orientation=squarish",
     inStock: true,
   },
   {
@@ -28,7 +28,7 @@ export const products = [
     movement: "N/A",
     stone: "Diamond",
     image:
-      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=80",
+      "https://readdy.ai/api/search-image?query=elegant%20rose%20gold%20womens%20watch%20with%20mother%20of%20pearl%20dial%20and%20leather%20strap%20on%20soft%20pink%20background%20luxury%20timepiece%20professional%20product%20photography%20studio%20lighting%20delicate%20feminine%20design%20clean%20minimalist%20backdrop&width=600&height=600&seq=ladywatch1&orientation=squarish",
     inStock: true,
   },
   {
@@ -44,7 +44,7 @@ export const products = [
     movement: "Quartz",
     stone: "None",
     image:
-      "https://images.unsplash.com/photo-1533139502658-0198f920d8e8?auto=format&fit=crop&w=1200&q=80",
+      "https://readdy.ai/api/search-image?query=luxury%20womens%20watch%20with%20diamond%20bezel%20and%20white%20ceramic%20bracelet%20on%20soft%20cream%20background%20elegant%20timepiece%20professional%20product%20photography%20studio%20lighting%20sparkling%20diamonds%20feminine%20sophisticated%20design&width=600&height=600&seq=ladywatch2&orientation=squarish",
     inStock: true,
   },
   {
@@ -60,7 +60,7 @@ export const products = [
     movement: "N/A",
     stone: "None",
     image:
-      "https://images.unsplash.com/photo-1617038220319-2761f7b0f12a?auto=format&fit=crop&w=1200&q=80",
+      "https://readdy.ai/api/search-image?query=minimalist%20silver%20womens%20watch%20with%20mesh%20bracelet%20on%20soft%20beige%20background%20elegant%20timepiece%20professional%20product%20photography%20studio%20lighting%20clean%20simple%20design%20modern%20feminine%20style&width=600&height=600&seq=ladywatch3&orientation=squarish",
     inStock: true,
   },
   {
@@ -76,7 +76,7 @@ export const products = [
     movement: "Automatic",
     stone: "None",
     image:
-      "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1200&q=80",
+      "https://readdy.ai/api/search-image?query=luxury%20womens%20watch%20with%20pearl%20white%20dial%20and%20gold%20bracelet%20on%20soft%20pink%20background%20elegant%20timepiece%20professional%20product%20photography%20studio%20lighting%20sophisticated%20feminine%20design%20delicate%20details&width=600&height=600&seq=ladywatch4&orientation=squarish",
     inStock: true,
   },
   {
@@ -92,7 +92,7 @@ export const products = [
     movement: "N/A",
     stone: "Ruby",
     image:
-      "https://images.unsplash.com/photo-1601121141160-9ae1c3d5b3ae?auto=format&fit=crop&w=1200&q=80",
+      "https://readdy.ai/api/search-image?query=luxury%20womens%20watch%20with%20crystal%20accents%20and%20silver%20bracelet%20on%20soft%20lavender%20background%20elegant%20timepiece%20professional%20product%20photography%20studio%20lighting%20sparkling%20crystals%20feminine%20sophisticated%20style&width=600&height=600&seq=ladywatch6&orientation=squarish",
     inStock: true,
   },
   {
@@ -108,7 +108,7 @@ export const products = [
     movement: "Automatic",
     stone: "None",
     image:
-      "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=1200&q=80",
+      "https://readdy.ai/api/search-image?query=elegant%20champagne%20gold%20womens%20watch%20with%20mesh%20bracelet%20on%20soft%20peach%20background%20luxury%20timepiece%20professional%20product%20photography%20studio%20lighting%20refined%20feminine%20design%20modern%20sophistication&width=600&height=600&seq=ladywatch7&orientation=squarish",
     inStock: true,
   },
   {
@@ -124,7 +124,7 @@ export const products = [
     movement: "N/A",
     stone: "Emerald",
     image:
-      "https://images.unsplash.com/photo-1600508774634-4e11d34730e2?auto=format&fit=crop&w=1200&q=80",
+      "https://readdy.ai/api/search-image?query=luxury%20white%20ceramic%20womens%20watch%20with%20diamond%20markers%20on%20soft%20pink%20background%20elegant%20timepiece%20professional%20product%20photography%20studio%20lighting%20pristine%20feminine%20design%20sophisticated%20style&width=600&height=600&seq=ladywatch8&orientation=squarish",
     inStock: false,
   },
   {
@@ -140,7 +140,7 @@ export const products = [
     movement: "Hybrid",
     stone: "None",
     image:
-      "https://images.unsplash.com/photo-1518544887879-99e8e6c88e5d?auto=format&fit=crop&w=1200&q=80",
+      "https://readdy.ai/api/search-image?query=slim%20elegant%20womens%20bracelet%20watch%20with%20silver%20chain%20on%20soft%20beige%20background%20luxury%20timepiece%20professional%20product%20photography%20studio%20lighting%20delicate%20feminine%20design%20minimalist%20style&width=600&height=600&seq=ladywatch10&orientation=squarish",
     inStock: true,
   },
   {
@@ -156,7 +156,7 @@ export const products = [
     movement: "N/A",
     stone: "Pearl",
     image:
-      "https://images.unsplash.com/photo-1600721391689-2564bb8055de?auto=format&fit=crop&w=1200&q=80",
+      "https://readdy.ai/api/search-image?query=luxury%20womens%20watch%20with%20mother%20of%20pearl%20dial%20and%20gold%20bracelet%20on%20soft%20pink%20background%20elegant%20timepiece%20professional%20product%20photography%20studio%20lighting%20iridescent%20feminine%20design%20sophisticated%20details&width=600&height=600&seq=ladywatch11&orientation=squarish",
     inStock: true,
   },
   {
@@ -172,7 +172,7 @@ export const products = [
     movement: "Mechanical",
     stone: "None",
     image:
-      "https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?auto=format&fit=crop&w=1200&q=80",
+      "https://readdy.ai/api/search-image?query=luxury%20womens%20watch%20with%20blue%20sapphire%20crystal%20and%20white%20gold%20bracelet%20on%20soft%20lavender%20background%20elegant%20timepiece%20professional%20product%20photography%20studio%20lighting%20precious%20gemstone%20feminine%20sophisticated%20design&width=600&height=600&seq=ladywatch12&orientation=squarish",
     inStock: true,
   },
   {
