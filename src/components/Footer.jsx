@@ -50,7 +50,10 @@ export default function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-white/75">
               {["Watches", "Bangles", "New Arrivals", "Best Sellers"].map((t) => (
                 <li key={t}>
-                  <a className="hover:text-white" href="/products">{t}</a>
+                <Link className="hover:text-white" to="/products">
+        {t}
+      </Link>
+                  {/* <a className="hover:text-white" href="/products">{t}</a> */}
                 </li>
               ))}
             </ul>
