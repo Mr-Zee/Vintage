@@ -59,7 +59,7 @@ export default function ContactPage() {
                 </span>
                 <div>
                   <p className="font-semibold text-neutral-900">Email</p>
-                  <p className="text-neutral-600">support@luxe-store.com</p>
+                  <p className="text-neutral-600">vinitaghub@gmail.com</p>
                 </div>
               </div>
 
@@ -69,7 +69,7 @@ export default function ContactPage() {
                 </span>
                 <div>
                   <p className="font-semibold text-neutral-900">Phone</p>
-                  <p className="text-neutral-600">+1 (555) 010-2025</p>
+                  <p className="text-neutral-600">+971 56 798 0664</p>
                 </div>
               </div>
 
@@ -80,17 +80,17 @@ export default function ContactPage() {
                 <div>
                   <p className="font-semibold text-neutral-900">Address</p>
                   <p className="text-neutral-600">
-                    88 Gold Avenue, Downtown<br />New York, NY
+                    Behind Wholesale plaza, <br />Murshid Bazar,<br /> Deira dubai
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-8 rounded-3xl bg-neutral-50 p-5 ring-1 ring-neutral-200">
+            {/* <div className="mt-8 rounded-3xl bg-neutral-50 p-5 ring-1 ring-neutral-200">
               <p className="text-xs font-semibold tracking-[0.22em] text-neutral-500">HOURS</p>
               <p className="mt-2 text-sm text-neutral-700">Mon–Fri: 9:00 AM – 6:00 PM</p>
               <p className="mt-1 text-sm text-neutral-700">Sat: 10:00 AM – 4:00 PM</p>
-            </div>
+            </div> */}
           </aside>
         </div>
       </Container>

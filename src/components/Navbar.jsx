@@ -38,7 +38,7 @@ export default function Navbar() {
           <nav className="hidden md:flex items-center gap-8 text-white/80">
             <NavLink to="/" end className={({ isActive }) => [linkBase, isActive ? "text-white " : "    hover:text-gold-300  duration-300"].join(" ")}>HOME <span className="absolute bottom-0 left-0 h-0.5 bg-gold-300 group-hover:w-full transition-all duration-300"></span></NavLink>
             <NavLink to="/products" className={({ isActive }) => [linkBase, isActive ? "text-white " : "   hover:text-gold-300  duration-300 "].join(" ")}>PRODUCTS <span className="absolute bottom-0 left-0 h-0.5 bg-gold-300 group-hover:w-full transition-all duration-300"></span></NavLink>
-            <NavLink to="/about" className={({ isActive }) => [linkBase, isActive ? "text-white " : "   hover:text-gold-300  duration-300"].join(" ")}>ABOUT US <span className="absolute bottom-0 left-0 h-0.5 bg-gold-300 group-hover:w-full transition-all duration-300"></span></NavLink>
+            {/* <NavLink to="/about" className={({ isActive }) => [linkBase, isActive ? "text-white " : "   hover:text-gold-300  duration-300"].join(" ")}>ABOUT US <span className="absolute bottom-0 left-0 h-0.5 bg-gold-300 group-hover:w-full transition-all duration-300"></span></NavLink> */}
             <NavLink to="/contact" className={({ isActive }) => [linkBase, isActive ? "text-white " : "   hover:text-gold-300  duration-300"].join(" ")}>CONTACT US <span className="absolute bottom-0 left-0 h-0.5 bg-gold-300 group-hover:w-full transition-all duration-300"></span></NavLink>
           </nav>
 

@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 
 const supportLinks = [
   { label: "Contact Us", to: "/contact" },
-  { label: "Shipping Info", to: "/shipping" },
-  { label: "Returns", to: "/returns" },
+  { label: "Shipping Info", to: "/contact" },
 ];
 
 function Container({ children, className = "" }) {
@@ -16,16 +15,16 @@ export default function Footer() {
   return (
     <footer className="bg-[#7a6046] text-white/90">
       <Container className="py-14">
-        <div className="grid gap-10 md:grid-cols-3">
+        <div className="grid gap-10 md:grid-cols-4">
           <div>
             <div className="inline-flex items-center gap-2">
               <span className="grid h-10 w-10 place-items-center rounded-full bg-white/10 ring-1 ring-white/15">
                 <Watch className="h-5 w-5" />
               </span>
-              <span className="font-semibold tracking-wide">Watch & Bangle Store</span>
+              <span className="font-semibold tracking-wide">Watch Store</span>
             </div>
             <p className="mt-4 text-sm leading-6 text-white/75">
-              Crafting timeless elegance with premium watches and exquisite bangles since 2020.
+              Crafting timeless elegance with premium watches since 2025.
             </p>
 
             <div className="mt-5 flex items-center gap-3">
@@ -71,7 +70,13 @@ export default function Footer() {
   ))}
 </ul>
           </div>
+            <div>
+            <h4 className="text-sm font-semibold tracking-wide mb-4">Behind Wholesale plaza, Murshid Bazar, Deira dubai</h4>
+            <h4 className="text-sm font-semibold tracking-wide">+971 56 798 0664</h4>
+            <h4 className="text-sm font-semibold tracking-wide">+971 56 788 5953</h4>
+            <h4 className="text-sm font-semibold tracking-wide">+971 56 735 8935</h4>
 
+            </div>
           {/* <div>
             <h4 className="text-sm font-semibold tracking-wide">Newsletter</h4>
             <p className="mt-4 text-sm text-white/75">Subscribe to get special offers and updates.</p>
