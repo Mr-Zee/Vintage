@@ -4,7 +4,7 @@ import ProductCard from "../components/ProductCard"
 import { products as allProducts } from "../data/products"
 
 function Container({ children, className = "" }) {
-  return <div className={["mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8", className].join(" ")}>{children}</div>
+  return <div className={["mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8", className].join(" ")}>{children}</div>
 }
 
 function Checkbox({ label, checked, onChange, count }) {
@@ -172,7 +172,7 @@ export default function ProductsPage() {
 
             <div className="mt-6">
               {view === "grid" ? (
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                   {filtered.map((p) => (
                     <ProductCard key={p.id} product={p} />
                   ))}

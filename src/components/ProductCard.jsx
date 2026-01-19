@@ -63,13 +63,13 @@ export default function ProductCard({ product, variant = "grid" }) {
                 </div>
               </div>
 
-              <button
+              {/* <button
                 className="grid h-9 w-9 place-items-center rounded-full bg-neutral-100 text-neutral-900 ring-1 ring-black/10 transition hover:bg-neutral-200"
                 aria-label="Add to wishlist"
                 type="button"
               >
                 <Heart className="h-4 w-4" />
-              </button>
+              </button> */}
             </div>
 
             <div className="mt-3 flex items-center gap-2">
@@ -123,13 +123,13 @@ export default function ProductCard({ product, variant = "grid" }) {
           </div>
         ) : null}
 
-        <button
+        {/* <button
           className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-white/90 text-neutral-900 shadow ring-1 ring-black/10 transition hover:bg-white"
           aria-label="Add to wishlist"
           type="button"
         >
           <Heart className="h-4 w-4" />
-        </button>
+        </button> */}
       </div>
 
       <div className="p-4">
