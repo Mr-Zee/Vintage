@@ -1,10 +1,28 @@
 import React from "react"
-import { Watch, Instagram, Twitter, Facebook } from "lucide-react"
+import { Watch, Instagram, Twitter, Facebook, MessageCircle } from "lucide-react"
 import { Link } from "react-router-dom";
 
 const supportLinks = [
   { label: "Contact Us", to: "/contact" },
   { label: "Shipping Info", to: "/contact" },
+];
+
+const socialLinks = [
+  { 
+    Icon: Facebook, 
+    label: "Facebook", 
+    href: "https://www.facebook.com/share/16duBcLYE1/"
+  },
+  { 
+    Icon: Instagram, 
+    label: "Instagram", 
+    href: "https://www.instagram.com/vintag.hub?igsh=MWV5djZhMXMydHF4NQ=="
+  },
+  { 
+  Icon: MessageCircle, 
+  label: "WhatsApp", 
+  href: "https://wa.me/971567980664" 
+}
 ];
 
 function Container({ children, className = "" }) {
@@ -28,18 +46,17 @@ export default function Footer() {
             </p>
 
             <div className="mt-5 flex items-center gap-3">
-              {[
-                { Icon: Facebook, label: "Facebook" },
-                { Icon: Instagram, label: "Instagram" },
-                { Icon: Twitter, label: "Twitter" },
-              ].map(({ Icon, label }) => (
-                <button
+              {socialLinks.map(({ Icon, label, href }) => (
+                <a
                   key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="grid h-10 w-10 place-items-center rounded-full bg-white/10 hover:bg-white/15 ring-1 ring-white/15 transition"
                   aria-label={label}
                 >
                   <Icon className="h-5 w-5" />
-                </button>
+                </a>
               ))}
             </div>
           </div>
@@ -47,36 +64,45 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold tracking-wide">Shop</h4>
             <ul className="mt-4 space-y-3 text-sm text-white/75">
-              {["Watches", "Bangles", "New Arrivals", "Best Sellers"].map((t) => (
-                <li key={t}>
-                <Link className="hover:text-white" to="/products">
-        {t}
-      </Link>
-                  {/* <a className="hover:text-white" href="/products">{t}</a> */}
-                </li>
-              ))}
+              {["Watches", "Bangles", "New Arrivals", "Best Sellers"].map(
+                (t) => (
+                  <li key={t}>
+                    <Link className="hover:text-white" to="/products">
+                      {t}
+                    </Link>
+                    {/* <a className="hover:text-white" href="/products">{t}</a> */}
+                  </li>
+                ),
+              )}
             </ul>
           </div>
 
           <div>
             <h4 className="text-sm font-semibold tracking-wide">Support</h4>
             <ul className="mt-4 space-y-3 text-sm text-white/75">
-  {supportLinks.map((item) => (
-    <li key={item.to}>
-      <Link className="hover:text-white" to={item.to}>
-        {item.label}
-      </Link>
-    </li>
-  ))}
-</ul>
+              {supportLinks.map((item) => (
+                <li key={item.to}>
+                  <Link className="hover:text-white" to={item.to}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-            <div>
-            <h4 className="text-sm font-semibold tracking-wide mb-4">Behind Wholesale plaza, Murshid Bazar, Deira dubai</h4>
-            <h4 className="text-sm font-semibold tracking-wide">+971 56 798 0664</h4>
-            <h4 className="text-sm font-semibold tracking-wide">+971 56 788 5953</h4>
-            <h4 className="text-sm font-semibold tracking-wide">+971 56 735 8935</h4>
-
-            </div>
+          <div>
+            <h4 className="text-sm font-semibold tracking-wide mb-4">
+              Behind Wholesale plaza, Murshid Bazar, Deira dubai
+            </h4>
+            <h4 className="text-sm font-semibold tracking-wide">
+              +971 56 798 0664
+            </h4>
+            <h4 className="text-sm font-semibold tracking-wide">
+              +971 56 788 5953
+            </h4>
+            <h4 className="text-sm font-semibold tracking-wide">
+              +971 56 735 8935
+            </h4>
+          </div>
           {/* <div>
             <h4 className="text-sm font-semibold tracking-wide">Newsletter</h4>
             <p className="mt-4 text-sm text-white/75">Subscribe to get special offers and updates.</p>
@@ -100,5 +126,5 @@ export default function Footer() {
         </div>
       </Container>
     </footer>
-  )
+  );
 }
