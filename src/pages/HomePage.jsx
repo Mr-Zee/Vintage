@@ -4,6 +4,7 @@ import SectionCard from "../components/SectionCard"
 import ProductCard from "../components/ProductCard"
 import { products } from "../data/products"
 import hero from "/Images/hb3.jpg"
+import { Link } from "react-router-dom";
 
 const heroBg = hero;
 
@@ -119,9 +120,9 @@ function Featured() {
         </div>
 
         <div className="mt-10 flex justify-center">
-          <a href="/products" className="btn bg-neutral-950 text-white hover:bg-neutral-900">
+           <Link className="btn bg-neutral-950 text-white hover:bg-neutral-900" to="/products">
             View All Products <ChevronRight className="h-4 w-4" />
-          </a>
+          </Link>
         </div>
       </Container>
     </section>
