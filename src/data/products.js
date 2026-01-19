@@ -11,7 +11,7 @@ export const products = [
     material: "Leather",
     movement: "Quartz",
     stone: "None",
-    image: "/Images/products/1 (1).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(1).jpeg",
     inStock: true,
   },
   {
@@ -26,7 +26,7 @@ export const products = [
     material: "Gold",
     movement: "Quartz",
     stone: "Diamond",
-    image: "/Images/products/1 (2).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(2).jpeg",
     inStock: true,
   },
   {
@@ -41,7 +41,7 @@ export const products = [
     material: "Stainless Steel",
     movement: "Quartz",
     stone: "None",
-    image: "/Images/products/1 (3).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(3).jpeg",
     inStock: true,
   },
   {
@@ -56,7 +56,7 @@ export const products = [
     material: "Platinum",
     movement: "Quartz",
     stone: "None",
-    image: "/Images/products/1 (4).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(4).jpeg",
     inStock: true,
   },
   {
@@ -71,7 +71,7 @@ export const products = [
     material: "Stainless Steel",
     movement: "Quartz",
     stone: "None",
-    image: "/Images/products/1 (5).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(5).jpeg",
     inStock: true,
   },
   {
@@ -86,7 +86,7 @@ export const products = [
     material: "Gold",
     movement: "Quartz",
     stone: "Ruby",
-    image: "/Images/products/1 (6).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(6).jpeg",
     inStock: true,
   },
   {
@@ -101,7 +101,7 @@ export const products = [
     material: "Stainless Steel",
     movement: "Quartz",
     stone: "None",
-    image: "/Images/products/1 (7).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(7).jpeg",
     inStock: true,
   },
   {
@@ -116,7 +116,7 @@ export const products = [
     material: "Gold",
     movement: "Quartz",
     stone: "Emerald",
-    image: "/Images/products/1 (8).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(8).jpeg",
     inStock: true,
   },
   {
@@ -131,7 +131,7 @@ export const products = [
     material: "Leather",
     movement: "Quartz",
     stone: "None",
-    image: "/Images/products/1 (9).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(9).jpeg",
     inStock: true,
   },
   {
@@ -146,7 +146,7 @@ export const products = [
     material: "Silver",
     movement: "Quartz",
     stone: "Pearl",
-    image: "/Images/products/1 (10).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(10).jpeg",
     inStock: true,
   },
   {
@@ -161,7 +161,7 @@ export const products = [
     material: "Gold",
     movement: "Quartz",
     stone: "None",
-    image: "/Images/products/1 (11).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(11).jpeg",
     inStock: true,
   },
   {
@@ -176,7 +176,7 @@ export const products = [
     material: "Platinum",
     movement: "Quartz",
     stone: "Sapphire",
-    image: "/Images/products/1 (12).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(12).jpeg",
     inStock: true,
   },
   {
@@ -191,7 +191,7 @@ export const products = [
     material: "Stainless Steel",
     movement: "Quartz",
     stone: "None",
-    image: "/Images/products/1 (13).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(13).jpeg",
     inStock: true,
   },
   {
@@ -206,7 +206,7 @@ export const products = [
     material: "Gold",
     movement: "Quartz",
     stone: "None",
-    image: "/Images/products/1 (14).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(14).jpeg",
     inStock: true,
   },
   {
@@ -221,7 +221,7 @@ export const products = [
     material: "Platinum",
     movement: "Quartz",
     stone: "Ruby",
-    image: "/Images/products/1 (15).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(15).jpeg",
     inStock: true,
   },
   {
@@ -236,7 +236,7 @@ export const products = [
     material: "Stainless Steel",
     movement: "Quartz",
     stone: "None",
-    image: "/Images/products/1 (16).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(16).jpeg",
     inStock: true,
   },
   {
@@ -251,7 +251,7 @@ export const products = [
     material: "Platinum",
     movement: "Quartz",
     stone: "Diamond",
-    image: "/Images/products/1 (17).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(17).jpeg",
     inStock: true,
   },
   {
@@ -266,7 +266,7 @@ export const products = [
     material: "Leather",
     movement: "Quartz",
     stone: "None",
-    image: "/Images/products/1 (18).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(18).jpeg",
     inStock: true,
   },
   {
@@ -281,7 +281,7 @@ export const products = [
     material: "Silver",
     movement: "Quartz",
     stone: "Sapphire",
-    image: "/Images/products/1 (19).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(19).jpeg",
     inStock: true,
   },
   {
@@ -296,7 +296,7 @@ export const products = [
     material: "Stainless Steel",
     movement: "Quartz",
     stone: "None",
-    image: "/Images/products/1 (20).jpeg",
+    image: "https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(20).jpeg",
     inStock: true,
   },
   // ... generating items p21 to p89 ...
@@ -318,7 +318,7 @@ export const products = [
       material: materials[idNum % 5],
       movement: "Quartz",
       stone: stones[idNum % 6],
-      image: `/Images/products/1 (${idNum}).jpeg`,
+      image: `https://raw.githubusercontent.com/Mr-Zee/Vintage/refs/heads/main/Images/products/1%20(${idNum}).jpeg`,
       inStock: true,
     };
   })
