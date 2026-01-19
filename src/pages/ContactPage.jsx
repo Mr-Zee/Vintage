@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Mail, Phone, MapPin, Send } from "lucide-react"
 
 function Container({ children, className = "" }) {
@@ -6,6 +6,41 @@ function Container({ children, className = "" }) {
 }
 
 export default function ContactPage() {
+  // 1. Setup state for form fields
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    subject: "",
+    message: ""
+  })
+
+  const WHATSAPP_NUMBER = "971567980664"
+
+  // 2. Handle WhatsApp redirect
+  const handleWhatsAppSubmit = (e) => {
+    e.preventDefault()
+
+    const text = `*New Contact Inquiry* 📩
+--------------------------
+*Name:* ${formData.fullName}
+*Email:* ${formData.email}
+*Subject:* ${formData.subject}
+
+*Message:*
+${formData.message}`
+
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
+    
+    // Open WhatsApp in a new tab
+    window.open(whatsappUrl, "_blank")
+  }
+
+  // 3. Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
   return (
     <div className="bg-[#f7f4ef]">
       <Container className="py-14">
@@ -14,36 +49,59 @@ export default function ContactPage() {
             <h1 className="font-display text-5xl text-neutral-900">Contact Us</h1>
             <p className="mt-3 text-sm text-neutral-600">Tell us what you need — we’ll get back within 24 hours.</p>
 
-            <form
-              className="mt-8 space-y-5"
-              onSubmit={(e) => {
-                e.preventDefault()
-                alert("Message sent! (demo)")
-              }}
-            >
+            <form className="mt-8 space-y-5" onSubmit={handleWhatsAppSubmit}>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label className="text-sm font-semibold text-neutral-900">Full Name</label>
-                  <input className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none focus:ring-2 focus:ring-neutral-950" placeholder="Enter your name" required />
+                  <input 
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none focus:ring-2 focus:ring-neutral-950" 
+                    placeholder="Enter your name" 
+                    required 
+                  />
                 </div>
                 <div>
                   <label className="text-sm font-semibold text-neutral-900">Email</label>
-                  <input type="email" className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none focus:ring-2 focus:ring-neutral-950" placeholder="Enter your email" required />
+                  <input 
+                    name="email"
+                    type="email" 
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none focus:ring-2 focus:ring-neutral-950" 
+                    placeholder="Enter your email" 
+                    required 
+                  />
                 </div>
               </div>
 
               <div>
                 <label className="text-sm font-semibold text-neutral-900">Subject</label>
-                <input className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none focus:ring-2 focus:ring-neutral-950" placeholder="How can we help?" required />
+                <input 
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none focus:ring-2 focus:ring-neutral-950" 
+                  placeholder="How can we help?" 
+                  required 
+                />
               </div>
 
               <div>
                 <label className="text-sm font-semibold text-neutral-900">Message</label>
-                <textarea className="mt-2 min-h-[140px] w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none focus:ring-2 focus:ring-neutral-950" placeholder="Write your message..." required />
+                <textarea 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="mt-2 min-h-[140px] w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none focus:ring-2 focus:ring-neutral-950" 
+                  placeholder="Write your message..." 
+                  required 
+                />
               </div>
 
-              <button className="btn bg-neutral-950 text-white hover:bg-neutral-900">
-                <Send className="h-4 w-4" /> Send Message
+              <button type="submit" className="flex items-center gap-2 rounded-full bg-neutral-950 px-6 py-3 text-sm font-semibold text-white hover:bg-neutral-900 transition">
+                <Send className="h-4 w-4" /> Send via WhatsApp
               </button>
             </form>
           </div>
@@ -79,18 +137,18 @@ export default function ContactPage() {
                 </span>
                 <div>
                   <p className="font-semibold text-neutral-900">Address</p>
-                  <p className="text-neutral-600">
+                  <p className="text-neutral-600 leading-relaxed">
                     Behind Wholesale plaza, <br />Murshid Bazar,<br /> Deira dubai
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* <div className="mt-8 rounded-3xl bg-neutral-50 p-5 ring-1 ring-neutral-200">
-              <p className="text-xs font-semibold tracking-[0.22em] text-neutral-500">HOURS</p>
-              <p className="mt-2 text-sm text-neutral-700">Mon–Fri: 9:00 AM – 6:00 PM</p>
-              <p className="mt-1 text-sm text-neutral-700">Sat: 10:00 AM – 4:00 PM</p>
-            </div> */}
+            <div className="mt-8 rounded-3xl bg-neutral-50 p-5 ring-1 ring-neutral-200">
+              <p className="text-xs font-semibold tracking-[0.22em] text-neutral-500 uppercase">Store Hours</p>
+              <p className="mt-2 text-sm text-neutral-700">Mon–Fri: 9:00 AM – 10:00 PM</p>
+              <p className="mt-1 text-sm text-neutral-700">Sat-Sun: 7:00 AM – 11:00 PM</p>
+            </div>
           </aside>
         </div>
       </Container>
