@@ -91,12 +91,12 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-white/15 pt-6 text-xs text-white/70 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-          <p>© 2025 Watch & Bangle Store. All rights reserved.</p>
-          <div className="flex gap-5">
-            {["Privacy Policy", "Terms of Service", "Powered by Ready"].map((t) => (
+          <p>© 2026 Vintag Store. All rights reserved.</p>
+          {/* <div className="flex gap-5">
+            {["Privacy Policy", "Terms of Service"].map((t) => (
               <a key={t} className="hover:text-white" href="#">{t}</a>
             ))}
-          </div>
+          </div> */}
         </div>
       </Container>
     </footer>
