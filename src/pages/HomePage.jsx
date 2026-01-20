@@ -4,6 +4,8 @@ import SectionCard from "../components/SectionCard"
 import ProductCard from "../components/ProductCard"
 import { products } from "../data/products"
 import hero from "/Images/hb3.jpg"
+import arrivals from "/Images/hb7.jpeg"
+import offers from "/Images/hb8.jpeg"
 import { Link } from "react-router-dom";
 
 const heroBg = hero;
@@ -13,11 +15,11 @@ const watchesCard =
   // "https://images.unsplash.com/photo-1539874754764-5a96559165b0?auto=format&fit=crop&w=1800&q=80"
 
 const banglesCard =
-"https://images.unsplash.com/photo-1608042314453-ae338d80c427?auto=format&fit=crop&w=1200&q=80"
+offers
   // "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1800&q=80"
 
 const arrivalsCard =
-  "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=1800&q=80"
+  arrivals;
 
 function Container({ children, className = "" }) {
   return <div className={["mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8", className].join(" ")}>{children}</div>
@@ -41,10 +43,11 @@ function Hero() {
           </p>
 
           <div className="mt-7 flex flex-wrap gap-3">
-            <button className="btn-primary">
-              Shop Now <ChevronRight className="h-4 w-4" />
+            <button className="btn-primary px-8">
+              Shop Now <ChevronRight className="h-4 w-5" />
             </button>
-            <button className="btn-outline">Learn More</button>
+           
+            {/* <button className="btn-outline">Learn More</button> */}
           </div>
         </div>
       </Container>
@@ -69,16 +72,16 @@ function PromoGrid() {
           <SectionCard
             title="Watches"
             subtitle="Timeless Elegance"
-            priceText="From $1,899"
+            priceText="From AED 1,899"
             cta="Shop Now"
             image={watchesCard}
             className="lg:col-span-2 min-h-[250px] sm:min-h-[300px]"
           />
           <div className="grid gap-6">
             <SectionCard
-              title="Chains"
+              title="Offers"
               subtitle="Exquisite Craftsmanship"
-              priceText="From $2,799"
+              priceText="From AED 799"
               cta="Explore"
               image={banglesCard}
               align="right"
@@ -92,7 +95,10 @@ function PromoGrid() {
                 </div>
                 <h3 className="mt-3 font-display text-2xl text-white">New Arrivals</h3>
                 <p className="mt-1 text-xs uppercase tracking-[0.22em] text-white/65">Explore our latest collection</p>
-                <a href="/products" className="mt-4 btn bg-gold-300 text-neutral-950 hover:bg-gold-200">Discover Now</a>
+                {/* <a href="/products" className="mt-4 btn bg-gold-300 text-neutral-950 hover:bg-gold-200">Discover Now</a> */}
+                <Link to="/products" className="mt-4 btn bg-gold-300 text-neutral-950 hover:bg-gold-200">
+                Discover Now
+              </Link>
               </div>
             </div>
           </div>

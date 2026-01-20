@@ -4,7 +4,7 @@ import { Heart, ShoppingCart, Star } from "lucide-react"
 function formatMoney(n) {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "USD",
+    currency: "AED",
     maximumFractionDigits: 0,
   }).format(n)
 }
