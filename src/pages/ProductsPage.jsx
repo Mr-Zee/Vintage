@@ -1,7 +1,9 @@
-import React, { useMemo, useState } from "react"
-import { LayoutGrid, List, SlidersHorizontal, ChevronDown } from "lucide-react"
+import React, { useMemo, useState, useEffect } from "react"
+import { LayoutGrid, List, SlidersHorizontal, ChevronDown, ChevronLeft, ChevronRight, X } from "lucide-react"
 import ProductCard from "../components/ProductCard"
 import { products as allProducts } from "../data/products"
+
+const ITEMS_PER_PAGE = 12;
 
 function Container({ children, className = "" }) {
   return <div className={["mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8", className].join(" ")}>{children}</div>
@@ -9,7 +11,7 @@ function Container({ children, className = "" }) {
 
 function Checkbox({ label, checked, onChange, count }) {
   return (
-    <label className="flex items-center justify-between gap-3 text-sm text-neutral-700">
+    <label className="flex items-center justify-between gap-3 text-sm text-neutral-700 cursor-pointer py-1">
       <span className="flex items-center gap-3">
         <input
           type="checkbox"
@@ -32,7 +34,7 @@ function Collapsible({ title, children, defaultOpen = true }) {
         <span className="text-sm font-semibold text-neutral-900">{title}</span>
         <ChevronDown className={["h-4 w-4 text-neutral-500 transition", open ? "rotate-180" : ""].join(" ")} />
       </button>
-      {open ? <div className="mt-3 space-y-3">{children}</div> : null}
+      {open ? <div className="mt-3 space-y-2">{children}</div> : null}
     </div>
   )
 }
@@ -40,12 +42,17 @@ function Collapsible({ title, children, defaultOpen = true }) {
 export default function ProductsPage() {
   const [view, setView] = useState("grid")
   const [sort, setSort] = useState("featured")
+  const [currentPage, setCurrentPage] = useState(1)
+  const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false)
 
+  // Filter States
   const [category, setCategory] = useState({ Watches: false, Bangles: false, Mens: false, Womens: false })
   const [material, setMaterial] = useState({ Gold: false, Silver: false, Platinum: false, "Stainless Steel": false, Leather: false })
   const [movement, setMovement] = useState({ Automatic: false, Quartz: false, Mechanical: false, Hybrid: false })
   const [stone, setStone] = useState({ Diamond: false, Ruby: false, Emerald: false, Sapphire: false, Pearl: false, None: false })
   const [priceMax, setPriceMax] = useState(10000)
+
+  useEffect(() => { setCurrentPage(1); }, [category, material, movement, stone, priceMax, sort]);
 
   const counts = useMemo(() => {
     const c = {
@@ -70,8 +77,7 @@ export default function ProductsPage() {
       const matOk = pickedMat.length ? pickedMat.includes(p.material) : true
       const movOk = pickedMov.length ? pickedMov.includes(p.movement) : true
       const stoneOk = pickedStone.length ? pickedStone.includes(p.stone) : true
-      const priceOk = p.price <= priceMax
-      return catOk && matOk && movOk && stoneOk && priceOk
+      return catOk && matOk && movOk && stoneOk && p.price <= priceMax
     })
 
     if (sort === "price-asc") list = [...list].sort((a, b) => a.price - b.price)
@@ -79,115 +85,127 @@ export default function ProductsPage() {
     return list
   }, [category, material, movement, stone, priceMax, sort])
 
-  const clearAll = () => {
-    setCategory({ Watches: false, Bangles: false, Mens: false, Womens: false })
-    setMaterial({ Gold: false, Silver: false, Platinum: false, "Stainless Steel": false, Leather: false })
-    setMovement({ Automatic: false, Quartz: false, Mechanical: false, Hybrid: false })
-    setStone({ Diamond: false, Ruby: false, Emerald: false, Sapphire: false, Pearl: false, None: false })
-    setPriceMax(10000)
-    setSort("featured")
-    setView("grid")
-  }
+  const paginatedProducts = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filtered.slice(start, start + ITEMS_PER_PAGE);
+  }, [filtered, currentPage]);
+
+  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+
+  const FiltersContent = () => (
+    <div className="space-y-6">
+              <h3 className="text-sm font-semibold text-neutral-900">Refine Your Search</h3>
+      <div className="flex items-center justify-between lg:hidden">
+        <h3 className="text-lg font-bold">Filters</h3>
+        <button onClick={() => setIsFilterDrawerOpen(false)}><X className="h-6 w-6" /></button>
+      </div>
+      <Collapsible title="Category">
+        <Checkbox label="Watches" count={counts.category.Watches} checked={category.Watches} onChange={(v) => setCategory(s => ({ ...s, Watches: v }))} />
+        {/* <Checkbox label="Bangles" count={counts.category.Bangles} checked={category.Bangles} onChange={(v) => setCategory(s => ({ ...s, Bangles: v }))} /> */}
+        <Checkbox label="Men's" count={counts.category.Mens} checked={category.Mens} onChange={(v) => setCategory(s => ({ ...s, Mens: v }))} />
+        <Checkbox label="Women's" count={counts.category.Womens} checked={category.Womens} onChange={(v) => setCategory(s => ({ ...s, Womens: v }))} />
+      </Collapsible>
+      <Collapsible title="Price Range">
+        <input type="range" min={0} max={10000} value={priceMax} onChange={(e) => setPriceMax(Number(e.target.value))} className="w-full accent-neutral-950" />
+        <div className="flex justify-between text-xs mt-1"><span>AED 0</span><span>AED {priceMax}</span></div>
+      </Collapsible>
+      <Collapsible title="Material">
+        {Object.keys(material).map(k => (
+          <Checkbox key={k} label={k} count={counts.material[k]} checked={material[k]} onChange={v => setMaterial(s => ({ ...s, [k]: v }))} />
+        ))}
+      </Collapsible>
+      <button onClick={() => setIsFilterDrawerOpen(false)} className="w-full rounded-full bg-black py-3 text-white font-semibold lg:hidden">Show Results</button>
+    </div>
+  );
 
   return (
-    <div className="bg-[#f7f4ef]">
-      <Container className="py-12">
-        <div className="text-center">
-          <h1 className="font-display text-5xl text-neutral-900">All Products</h1>
-          <p className="mt-3 text-sm text-neutral-600">Discover our exquisite collection of luxury timepieces and bangles</p>
+    <div className="bg-[#f7f4ef] min-h-screen pb-20">
+      <Container className="py-10">
+        <div className="text-center mb-10">
+          <h1 className="text-4xl md:text-5xl font-display text-neutral-900">Our Collection</h1>
         </div>
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-[280px_1fr]">
-          <aside className="rounded-3xl bg-white p-5 shadow-soft ring-1 ring-black/5 h-fit">
-            <div className="flex items-center gap-2">
-              <SlidersHorizontal className="h-4 w-4 text-neutral-700" />
-              <h3 className="text-sm font-semibold text-neutral-900">Refine Your Search</h3>
-            </div>
-
-            <Collapsible title="Category">
-              <Checkbox label="Watches" count={counts.category.Watches} checked={category.Watches} onChange={(v) => setCategory((s) => ({ ...s, Watches: v }))} />
-              <Checkbox label="Bangles" count={counts.category.Bangles} checked={category.Bangles} onChange={(v) => setCategory((s) => ({ ...s, Bangles: v }))} />
-              <Checkbox label="Men's" count={counts.category.Mens} checked={category.Mens} onChange={(v) => setCategory((s) => ({ ...s, Mens: v }))} />
-              <Checkbox label="Women's" count={counts.category.Womens} checked={category.Womens} onChange={(v) => setCategory((s) => ({ ...s, Womens: v }))} />
-            </Collapsible>
-
-            <Collapsible title="Price Range">
-              <div className="space-y-2">
-                <input type="range" min={0} max={10000} value={priceMax} onChange={(e) => setPriceMax(Number(e.target.value))} className="w-full accent-neutral-950" />
-                <div className="flex items-center justify-between text-xs text-neutral-500">
-                  <span>$0</span>
-                  <span>${priceMax.toLocaleString()}</span>
-                </div>
-              </div>
-            </Collapsible>
-
-            <Collapsible title="Material">
-              {Object.keys(material).map((k) => (
-                <Checkbox key={k} label={k} count={counts.material[k] ?? undefined} checked={material[k]} onChange={(v) => setMaterial((s) => ({ ...s, [k]: v }))} />
-              ))}
-            </Collapsible>
-
-            <Collapsible title="Movement Type" defaultOpen={false}>
-              {Object.keys(movement).map((k) => (
-                <Checkbox key={k} label={k} checked={movement[k]} onChange={(v) => setMovement((s) => ({ ...s, [k]: v }))} />
-              ))}
-            </Collapsible>
-
-            <Collapsible title="Stone Type" defaultOpen={false}>
-              {Object.keys(stone).map((k) => (
-                <Checkbox key={k} label={k} checked={stone[k]} onChange={(v) => setStone((s) => ({ ...s, [k]: v }))} />
-              ))}
-            </Collapsible>
-
-            <button className="mt-5 w-full rounded-full bg-neutral-950 px-4 py-2.5 text-sm font-semibold text-white hover:bg-neutral-900 transition" type="button">
-              Apply Filters
-            </button>
-            <button className="mt-3 w-full rounded-full bg-neutral-100 px-4 py-2.5 text-sm font-semibold text-neutral-900 hover:bg-neutral-200 transition" type="button" onClick={clearAll}>
-              Clear All
-            </button>
+        <div className="grid gap-8 lg:grid-cols-[260px_1fr]">
+          {/* Desktop Sidebar */}
+          <aside className="hidden lg:block sticky top-24 h-fit bg-white p-6 rounded-3xl shadow-sm ring-1 ring-black/5">
+            <FiltersContent />
           </aside>
 
-          <section>
-            <div className="rounded-3xl bg-white px-5 py-4 shadow-soft ring-1 ring-black/5">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <p className="text-sm text-neutral-600">Showing 1-{filtered.length} of {allProducts.length} products</p>
-                <div className="flex items-center gap-3">
-                  <select className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-950" value={sort} onChange={(e) => setSort(e.target.value)}>
-                    <option value="featured">Sort by: Featured</option>
-                    <option value="price-asc">Sort by: Price (Low → High)</option>
-                    <option value="price-desc">Sort by: Price (High → Low)</option>
-                  </select>
+          {/* Main List */}
+          <main>
+            <div className="flex items-center justify-between bg-white p-4 rounded-2xl shadow-sm ring-1 ring-black/5 mb-6">
+              <button 
+                onClick={() => setIsFilterDrawerOpen(true)}
+                className="flex items-center gap-2 lg:hidden px-4 py-2 border rounded-full text-sm font-medium"
+              >
+                <SlidersHorizontal className="h-4 w-4" /> Filters
+              </button>
 
-                  <div className="flex overflow-hidden rounded-full border border-neutral-200">
-                    <button type="button" onClick={() => setView("grid")} className={["grid h-10 w-10 place-items-center", view === "grid" ? "bg-neutral-950 text-white" : "bg-white text-neutral-700 hover:bg-neutral-100"].join(" ")} aria-label="Grid view">
-                      <LayoutGrid className="h-4 w-4" />
-                    </button>
-                    <button type="button" onClick={() => setView("list")} className={["grid h-10 w-10 place-items-center", view === "list" ? "bg-neutral-950 text-white" : "bg-white text-neutral-700 hover:bg-neutral-100"].join(" ")} aria-label="List view">
-                      <List className="h-4 w-4" />
-                    </button>
-                  </div>
+              <div className="hidden sm:block text-sm text-neutral-500">
+                {filtered.length} items found
+              </div>
+
+              <div className="flex items-center gap-3">
+                <select className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-900" value={sort} onChange={(e) => setSort(e.target.value)}>
+                  <option value="featured">Featured</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                </select>
+                <div className="hidden sm:flex border-l pl-2 gap-1">
+                   <button onClick={() => setView("grid")} className={`p-2 rounded-lg ${view === 'grid' ? 'bg-black text-white' : ''}`}><LayoutGrid size={18}/></button>
+                   <button onClick={() => setView("list")} className={`p-2 rounded-lg ${view === 'list' ? 'bg-black text-white' : ''}`}><List size={18}/></button>
                 </div>
               </div>
             </div>
 
-            <div className="mt-6">
-              {view === "grid" ? (
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                  {filtered.map((p) => (
-                    <ProductCard key={p.id} product={p} />
-                  ))}
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  {filtered.map((p) => (
-                    <ProductCard key={p.id} product={p} variant="list" />
-                  ))}
-                </div>
-              )}
+            {/* Grid */}
+            <div className={view === "grid" ? "grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6" : "flex flex-col gap-4"}>
+              {paginatedProducts.map(p => <ProductCard key={p.id} product={p} variant={view} />)}
             </div>
-          </section>
+
+            {/* Responsive Pagination */}
+            {totalPages > 1 && (
+              <div className="mt-12 flex flex-wrap items-center justify-center gap-2">
+                <button 
+                  disabled={currentPage === 1} 
+                  onClick={() => {setCurrentPage(c => c - 1); window.scrollTo(0,0)}}
+                  className="p-2 border rounded-full disabled:opacity-20"
+                >
+                  <ChevronLeft size={20}/>
+                </button>
+                
+                <div className="flex gap-1 overflow-x-auto max-w-[200px] sm:max-w-none px-2">
+                  {[...Array(totalPages)].map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => {setCurrentPage(i + 1); window.scrollTo(0,0)}}
+                      className={`min-w-[40px] h-10 rounded-full text-sm font-bold transition ${currentPage === i + 1 ? 'bg-black text-white' : 'bg-white border'}`}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                </div>
+
+                <button 
+                  disabled={currentPage === totalPages} 
+                  onClick={() => {setCurrentPage(c => c + 1); window.scrollTo(0,0)}}
+                  className="p-2 border rounded-full disabled:opacity-20"
+                >
+                  <ChevronRight size={20}/>
+                </button>
+              </div>
+            )}
+          </main>
         </div>
       </Container>
+
+      {/* Mobile Filter Drawer */}
+      <div className={`fixed inset-0 z-[100] lg:hidden transition-transform duration-300 ${isFilterDrawerOpen ? 'translate-y-0' : 'translate-y-full'}`}>
+        <div className="absolute inset-0 bg-black/40" onClick={() => setIsFilterDrawerOpen(false)} />
+        <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-[32px] p-6 max-h-[85vh] overflow-y-auto">
+          <FiltersContent />
+        </div>
+      </div>
     </div>
   )
 }
