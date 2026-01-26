@@ -2,7 +2,7 @@ export const products = [
   {
     id: "p1",
     title: "Classic Chronograph Watch",
-    price: 2999,
+    price: 150,
     oldPrice: 3499,
     rating: 4.8,
     reviews: 124,
@@ -17,7 +17,7 @@ export const products = [
   {
     id: "p2",
     title: "Diamond Eternity Bangle",
-    price: 4599,
+    price: 150,
     oldPrice: null,
     rating: 4.6,
     reviews: 89,
@@ -32,7 +32,7 @@ export const products = [
   {
     id: "p3",
     title: "Minimalist Rose Gold Watch",
-    price: 1899,
+    price: 150,
     oldPrice: null,
     rating: 4.7,
     reviews: 156,
@@ -47,7 +47,7 @@ export const products = [
   {
     id: "p7",
     title: "Skeleton Executive Watch",
-    price: 4299,
+    price: 150,
     oldPrice: null,
     rating: 4.7,
     reviews: 142,
@@ -62,7 +62,7 @@ export const products = [
   {
     id: "p8",
     title: "Emerald Charm Bangle",
-    price: 4199,
+    price: 150,
     oldPrice: null,
     rating: 4.6,
     reviews: 78,
@@ -77,7 +77,7 @@ export const products = [
   {
     id: "p9",
     title: "Smart Hybrid Watch",
-    price: 2499,
+    price: 150,
     oldPrice: null,
     rating: 4.3,
     reviews: 267,
@@ -92,7 +92,7 @@ export const products = [
   {
     id: "p10",
     title: "Pearl Inlay Bangle",
-    price: 2799,
+    price: 150,
     oldPrice: null,
     rating: 4.4,
     reviews: 103,
@@ -107,7 +107,7 @@ export const products = [
   {
     id: "p11",
     title: "Vintage Pocket Watch",
-    price: 1999,
+    price: 150,
     oldPrice: null,
     rating: 4.2,
     reviews: 85,
@@ -122,7 +122,7 @@ export const products = [
   {
     id: "p12",
     title: "Sapphire Luxury Bangle",
-    price: 6499,
+    price: 150,
     oldPrice: null,
     rating: 4.8,
     reviews: 54,
@@ -137,7 +137,7 @@ export const products = [
   {
     id: "p13",
     title: "Midnight Steel Watch",
-    price: 2100,
+    price: 150,
     oldPrice: 2500,
     rating: 4.5,
     reviews: 42,
@@ -152,7 +152,7 @@ export const products = [
   {
     id: "p14",
     title: "Gold Mesh Ladies Watch",
-    price: 1750,
+    price: 150,
     oldPrice: null,
     rating: 4.6,
     reviews: 88,
@@ -167,7 +167,7 @@ export const products = [
   {
     id: "p15",
     title: "Royal Ruby Bracelet",
-    price: 5200,
+    price: 150,
     oldPrice: 5800,
     rating: 4.9,
     reviews: 31,
@@ -182,7 +182,7 @@ export const products = [
   {
     id: "p16",
     title: "Titanium Explorer Watch",
-    price: 3100,
+    price: 150,
     oldPrice: null,
     rating: 4.7,
     reviews: 112,
@@ -197,7 +197,7 @@ export const products = [
   {
     id: "p17",
     title: "Celestial Diamond Watch",
-    price: 8900,
+    price: 150,
     oldPrice: 9500,
     rating: 5.0,
     reviews: 12,
@@ -212,7 +212,7 @@ export const products = [
   {
     id: "p18",
     title: "Executive Leather Watch",
-    price: 2600,
+    price: 150,
     oldPrice: null,
     rating: 4.4,
     reviews: 95,
@@ -227,7 +227,7 @@ export const products = [
   {
     id: "p19",
     title: "Ocean Blue Bangle",
-    price: 1400,
+    price: 150,
     oldPrice: 1600,
     rating: 4.3,
     reviews: 45,
@@ -242,7 +242,7 @@ export const products = [
   {
     id: "p20",
     title: "Modern Matte Watch",
-    price: 1200,
+    price: 150,
     oldPrice: null,
     rating: 4.1,
     reviews: 160,
@@ -264,8 +264,8 @@ export const products = [
     return {
       id: `p${idNum}`,
       title: `${materials[idNum % 5]} ${categories[idNum % 4]} ${idNum}`,
-      price: 1000 + (idNum * 50),
-      oldPrice: idNum % 3 === 0 ? 1500 + (idNum * 50) : null,
+      price: 150 ,
+      oldPrice: null,
       rating: (4 + Math.random()).toFixed(1) * 1,
       reviews: Math.floor(Math.random() * 300),
       badge: idNum % 10 === 0 ? "Hot" : null,
