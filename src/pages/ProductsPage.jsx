@@ -2,6 +2,7 @@ import React, { useMemo, useState, useEffect } from "react"
 import { LayoutGrid, List, SlidersHorizontal, ChevronDown, ChevronLeft, ChevronRight, X } from "lucide-react"
 import ProductCard from "../components/ProductCard"
 import { products as allProducts } from "../data/products"
+// import { getProducts } from "../services/productService";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -44,6 +45,15 @@ export default function ProductsPage() {
   const [sort, setSort] = useState("featured")
   const [currentPage, setCurrentPage] = useState(1)
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false)
+  {/* const [allProducts, setAllProducts] = useState([]);
+
+useEffect(() => {
+  (async () => {
+    const data = await getProducts();
+    setAllProducts(data);
+  })();
+}, []); */}
+
 
   // Filter States
   const [category, setCategory] = useState({ Watches: false, Bangles: false, Mens: false, Womens: false })
@@ -64,7 +74,7 @@ export default function ProductsPage() {
       if (c.material[p.material] !== undefined) c.material[p.material]++
     })
     return c
-  }, [])
+  }, [allProducts])
 
   const filtered = useMemo(() => {
     const pickedCat = Object.entries(category).filter(([, v]) => v).map(([k]) => k)
@@ -101,9 +111,9 @@ export default function ProductsPage() {
       </div>
       <Collapsible title="Category">
         <Checkbox label="Watches" count={counts.category.Watches} checked={category.Watches} onChange={(v) => setCategory(s => ({ ...s, Watches: v }))} />
-        {/* <Checkbox label="Bangles" count={counts.category.Bangles} checked={category.Bangles} onChange={(v) => setCategory(s => ({ ...s, Bangles: v }))} /> */}
+        {/* <Checkbox label="Bangles" count={counts.category.Bangles} checked={category.Bangles} onChange={(v) => setCategory(s => ({ ...s, Bangles: v }))} />
         <Checkbox label="Men's" count={counts.category.Mens} checked={category.Mens} onChange={(v) => setCategory(s => ({ ...s, Mens: v }))} />
-        <Checkbox label="Women's" count={counts.category.Womens} checked={category.Womens} onChange={(v) => setCategory(s => ({ ...s, Womens: v }))} />
+        <Checkbox label="Women's" count={counts.category.Womens} checked={category.Womens} onChange={(v) => setCategory(s => ({ ...s, Womens: v }))} /> */}
       </Collapsible>
       <Collapsible title="Price Range">
         <input type="range" min={0} max={10000} value={priceMax} onChange={(e) => setPriceMax(Number(e.target.value))} className="w-full accent-neutral-950" />
