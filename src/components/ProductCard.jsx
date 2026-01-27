@@ -23,7 +23,7 @@ Is it available?`
 }
 
 export default function ProductCard({ product, variant = "grid" }) {
-  const { title, price, oldPrice, rating, reviews, badge, image, inStock } =
+  const { title, price, oldPrice, rating, reviews, badge, image, inStock, material, movement } =
     product
 
   if (variant === "list") {
@@ -53,13 +53,15 @@ export default function ProductCard({ product, variant = "grid" }) {
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h4 className="text-sm font-semibold">{title}</h4>
+          <div className="font-semibold text-sm mt-1">Code : {reviews}</div>
+
                 <div className="mt-1 flex items-center gap-2 text-xs text-neutral-700">
                   <div className="flex items-center gap-1">
                     <Star className="h-3.5 w-3.5 fill-current" />
                     <span className="font-semibold">{rating.toFixed(1)}</span>
                   </div>
                   <span className="text-neutral-400">•</span>
-                  <span>({reviews})</span>
+                  {/* <span>({reviews})</span> */}
                 </div>
               </div>
 
@@ -72,13 +74,19 @@ export default function ProductCard({ product, variant = "grid" }) {
               </button> */}
             </div>
 
-            <div className="mt-3 flex items-center gap-2">
+            {/* <div className="mt-3 flex items-center gap-2">
               <span className="text-base font-extrabold">{formatMoney(price)}</span>
               {oldPrice ? (
                 <span className="text-sm font-semibold text-neutral-400 line-through">
                   {formatMoney(oldPrice)}
                 </span>
               ) : null}
+            </div> */}
+
+            <div className="mt-3">
+              <span className="text-sm font-semibold">
+                  {(material) + " | " + (movement )}
+                </span>
             </div>
 
             {/* ✅ WhatsApp redirect */}
@@ -135,23 +143,29 @@ export default function ProductCard({ product, variant = "grid" }) {
       <div className="p-4">
         <h4 className="line-clamp-2 text-sm font-semibold">{title}</h4>
 
+          <div className="font-semibold text-sm mt-1">Code : {reviews}</div>
         <div className="mt-2 flex items-center gap-2 text-xs text-neutral-700">
           <div className="flex items-center gap-1">
             <Star className="h-3.5 w-3.5 fill-current" />
             <span className="font-semibold">{rating.toFixed(1)}</span>
           </div>
           <span className="text-neutral-400">•</span>
-          <span>({reviews})</span>
         </div>
 
-        <div className="mt-3 flex items-center gap-2">
+        {/* <div className="mt-3 flex items-center gap-2">
           <span className="text-base font-extrabold">{formatMoney(price)}</span>
           {oldPrice ? (
             <span className="text-sm font-semibold text-neutral-400 line-through">
               {formatMoney(oldPrice)}
             </span>
           ) : null}
-        </div>
+        </div> */}
+
+        <div className="mt-3">
+              <span className="text-sm font-semibold">
+                  {(material) + " | " + (movement )}
+                </span>
+            </div>
 
         {/* ✅ WhatsApp redirect */}
         <a
