@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const supportLinks = [
   { label: "Contact Us", to: "/contact" },
-  { label: "Shipping Info", to: "/contact" },
+  // { label: "Shipping Info", to: "/contact" },
 ];
 
 const socialLinks = [

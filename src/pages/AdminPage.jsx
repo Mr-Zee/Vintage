@@ -1,26 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { createProduct, deleteProduct, getProducts } from "../services/productService";
-
-function Container({ children }) {
-  return <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8 py-10">{children}</div>;
-}
+import { createProduct, deleteProduct, getProducts, updateProduct } from "../services/productService";
+import { Edit2, Trash2, X, UploadCloud } from "lucide-react";
 
 export default function AdminPage() {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [editingId, setEditingId] = useState(null);
 
-  const [form, setForm] = useState({
-    title: "",
-    price: 150,
-    oldPrice: "",
-    badge: "",
-    category: "Watches",
-    material: "Stainless Steel",
-    movement: "Quartz",
-    stone: "None",
-    inStock: true,
-  });
-
+  const [form, setForm] = useState({ title: "", code: "", material: "Stainless Steel" });
   const [file, setFile] = useState(null);
 
   const load = async () => {
@@ -28,164 +15,129 @@ export default function AdminPage() {
     setList(data);
   };
 
-  useEffect(() => {
-    load();
-  }, []);
+  useEffect(() => { load(); }, []);
 
-  const onChange = (k, v) => setForm((s) => ({ ...s, [k]: v }));
+  const onEdit = (p) => {
+    setEditingId(p.id);
+    setForm({ title: p.title, code: p.reviews, material: p.material });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const cancelEdit = () => {
+    setEditingId(null);
+    setForm({ title: "", code: "", material: "Stainless Steel" });
+    setFile(null);
+  };
 
   const onSubmit = async (e) => {
-    e.preventDefault();
-    if (!file) return alert("Please select an image");
+  e.preventDefault();
+  setLoading(true);
+  try {
+    const fd = new FormData();
+    fd.append("title", form.title);
+    fd.append("code", form.code);
+    fd.append("material", form.material);
 
-    setLoading(true);
-    try {
-      const fd = new FormData();
-      Object.entries(form).forEach(([k, v]) => fd.append(k, v));
+    if (editingId) {
+      if (file) {
+        // User picked a new file
+        fd.append("image", file);
+      } else {
+        // User did NOT pick a file, send the old URL back
+        const currentItem = list.find(p => p.id === editingId);
+        fd.append("image", currentItem.image); 
+      }
+      await updateProduct(editingId, fd);
+    } else {
+      if (!file) return alert("Image required");
       fd.append("image", file);
-
       await createProduct(fd);
-      setFile(null);
-      setForm((s) => ({ ...s, title: "", badge: "", oldPrice: "" }));
-      await load();
-      alert("✅ Product added");
-    } catch (err) {
-      alert(err.message);
-    } finally {
-      setLoading(false);
     }
-  };
-
-  const onDelete = async (id) => {
-    if (!confirm("Delete this product?")) return;
-    await deleteProduct(id);
-    await load();
-  };
+    
+    cancelEdit();
+    load();
+    alert("Success!");
+  } catch (err) {
+    console.error(err);
+    alert("Error: " + err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
-    <div className="bg-[#f7f4ef] min-h-screen">
-      <Container>
-        <h1 className="text-4xl font-display text-neutral-900">Admin</h1>
-        <p className="mt-2 text-sm text-neutral-600">Add products and upload images (stored in backend).</p>
+    <div className="bg-[#fcfaf7] min-h-screen p-6">
+      <div className="max-w-4xl mx-auto">
+        <header className="mb-8">
+          <h1 className="text-3xl font-bold text-neutral-900">{editingId ? "Edit Product" : "New Product"}</h1>
+          <p className="text-neutral-500">Manage your inventory and S3 assets.</p>
+        </header>
 
-        <form onSubmit={onSubmit} className="mt-8 bg-white rounded-3xl p-6 shadow-sm ring-1 ring-black/5">
+        {/* --- FORM SECTION --- */}
+        <form onSubmit={onSubmit} className="bg-white p-6 rounded-3xl shadow-sm border border-neutral-100 mb-10">
           <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label className="text-sm font-semibold">Title</label>
-              <input
-                className="mt-1 w-full rounded-xl border px-3 py-2"
-                value={form.title}
-                onChange={(e) => onChange("title", e.target.value)}
-                required
-              />
-            </div>
-
-            <div>
-              <label className="text-sm font-semibold">Category</label>
-              <select className="mt-1 w-full rounded-xl border px-3 py-2" value={form.category} onChange={(e) => onChange("category", e.target.value)}>
-                <option>Watches</option>
-                <option>Bangles</option>
-                <option>Mens</option>
-                <option>Womens</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="text-sm font-semibold">Price (AED)</label>
-              <input
-                type="number"
-                className="mt-1 w-full rounded-xl border px-3 py-2"
-                value={form.price}
-                onChange={(e) => onChange("price", e.target.value)}
-                required
-              />
-            </div>
-
-            <div>
-              <label className="text-sm font-semibold">Old Price (optional)</label>
-              <input
-                type="number"
-                className="mt-1 w-full rounded-xl border px-3 py-2"
-                value={form.oldPrice}
-                onChange={(e) => onChange("oldPrice", e.target.value)}
-              />
-            </div>
-
-            <div>
-              <label className="text-sm font-semibold">Badge (optional)</label>
-              <input
-                className="mt-1 w-full rounded-xl border px-3 py-2"
-                value={form.badge}
-                onChange={(e) => onChange("badge", e.target.value)}
-                placeholder="New / -10% / Elite"
-              />
-            </div>
-
-            <div>
-              <label className="text-sm font-semibold">Material</label>
-              <input className="mt-1 w-full rounded-xl border px-3 py-2" value={form.material} onChange={(e) => onChange("material", e.target.value)} />
-            </div>
-
-            <div>
-              <label className="text-sm font-semibold">Movement</label>
-              <input className="mt-1 w-full rounded-xl border px-3 py-2" value={form.movement} onChange={(e) => onChange("movement", e.target.value)} />
-            </div>
-
-            <div>
-              <label className="text-sm font-semibold">Stone</label>
-              <input className="mt-1 w-full rounded-xl border px-3 py-2" value={form.stone} onChange={(e) => onChange("stone", e.target.value)} />
-            </div>
-
             <div className="sm:col-span-2">
-              <label className="text-sm font-semibold">Image</label>
-              <input
-                type="file"
-                accept="image/*"
-                className="mt-1 w-full rounded-xl border px-3 py-2"
-                onChange={(e) => setFile(e.target.files?.[0] || null)}
-                required
-              />
+              <label className="text-xs font-bold uppercase text-neutral-400">Title</label>
+              <input className="w-full mt-1 border-b-2 border-neutral-100 py-2 focus:border-neutral-900 outline-none transition" 
+                     value={form.title} onChange={e => setForm({...form, title: e.target.value})} required />
             </div>
-
-            <div className="sm:col-span-2 flex items-center gap-3">
-              <input
-                type="checkbox"
-                checked={form.inStock}
-                onChange={(e) => onChange("inStock", e.target.checked)}
-              />
-              <span className="text-sm font-semibold">In Stock</span>
+            <div>
+              <label className="text-xs font-bold uppercase text-neutral-400">Code ID</label>
+              <input className="w-full mt-1 border-b-2 border-neutral-100 py-2 focus:border-neutral-900 outline-none transition" 
+                     value={form.code} onChange={e => setForm({...form, code: e.target.value})} required />
+            </div>
+            <div>
+              <label className="text-xs font-bold uppercase text-neutral-400">Material</label>
+              <input className="w-full mt-1 border-b-2 border-neutral-100 py-2 focus:border-neutral-900 outline-none transition" 
+                     value={form.material} onChange={e => setForm({...form, material: e.target.value})} />
+            </div>
+            <div className="sm:col-span-2">
+              <label className="text-xs font-bold uppercase text-neutral-400">Image {editingId && "(Optional)"}</label>
+              <input type="file" className="block w-full text-sm text-neutral-500 mt-2 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-neutral-100 file:text-neutral-700 hover:file:bg-neutral-200" 
+                     onChange={e => setFile(e.target.files[0])} />
             </div>
           </div>
 
-          <button
-            disabled={loading}
-            className="mt-6 rounded-full bg-neutral-950 text-white px-6 py-3 font-semibold disabled:opacity-50"
-          >
-            {loading ? "Adding..." : "Add Product"}
-          </button>
+          <div className="mt-8 flex gap-3">
+            <button className="flex-1 bg-neutral-900 text-white py-3 rounded-xl font-bold hover:bg-black transition disabled:opacity-50">
+              {loading ? "Processing..." : editingId ? "Save Changes" : "Add to Inventory"}
+            </button>
+            {editingId && (
+              <button type="button" onClick={cancelEdit} className="px-6 bg-neutral-100 text-neutral-600 rounded-xl font-bold hover:bg-neutral-200">
+                Cancel
+              </button>
+            )}
+          </div>
         </form>
 
-        <div className="mt-10">
-          <h2 className="text-2xl font-display text-neutral-900">Products</h2>
-
-          <div className="mt-4 grid gap-4">
-            {list.map((p) => (
-              <div key={p.id} className="flex items-center justify-between bg-white p-4 rounded-2xl ring-1 ring-black/5">
-                <div className="flex items-center gap-4">
-                  <img src={p.image} alt={p.title} className="h-16 w-20 object-cover rounded-xl bg-neutral-100" />
-                  <div>
-                    <div className="font-semibold">{p.title}</div>
-                    <div className="text-sm text-neutral-600">{p.category} • AED {p.price}</div>
-                  </div>
+        {/* --- THUMBNAIL LIST SECTION --- */}
+        <h2 className="text-xl font-bold mb-4 px-2">Inventory List</h2>
+        <div className="grid gap-3">
+          {list.map((p) => (
+            <div key={p.id} className="group flex items-center bg-white p-3 rounded-2xl border border-neutral-100 hover:shadow-md transition">
+              <img src={p.image} className="w-20 h-20 object-cover rounded-xl bg-neutral-50" alt="" />
+              
+              <div className="ml-4 flex-1">
+                <h3 className="font-bold text-neutral-900 leading-tight">{p.title}</h3>
+                <div className="flex gap-3 mt-1 text-sm text-neutral-500">
+                  <span>Code: <b className="text-neutral-800">{p.reviews}</b></span>
+                  <span>•</span>
+                  <span>{p.material}</span>
                 </div>
-                <button onClick={() => onDelete(p.id)} className="rounded-full px-4 py-2 bg-red-600 text-white font-semibold">
-                  Delete
+              </div>
+
+              <div className="flex gap-2">
+                <button onClick={() => onEdit(p)} className="p-2 text-neutral-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition">
+                  <Edit2 size={18} />
+                </button>
+                <button onClick={() => deleteProduct(p.id).then(load)} className="p-2 text-neutral-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition">
+                  <Trash2 size={18} />
                 </button>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      </Container>
+      </div>
     </div>
   );
 }
