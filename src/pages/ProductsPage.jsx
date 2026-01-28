@@ -1,8 +1,8 @@
 import React, { useMemo, useState, useEffect } from "react"
 import { LayoutGrid, List, SlidersHorizontal, ChevronDown, ChevronLeft, ChevronRight, X } from "lucide-react"
 import ProductCard from "../components/ProductCard"
-import { products as allProducts } from "../data/products"
-// import { getProducts } from "../services/productService";
+// import { products as allProducts } from "../data/products"
+import { getProducts } from "../services/productService";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -45,14 +45,14 @@ export default function ProductsPage() {
   const [sort, setSort] = useState("featured")
   const [currentPage, setCurrentPage] = useState(1)
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false)
-  {/* const [allProducts, setAllProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
 
 useEffect(() => {
   (async () => {
     const data = await getProducts();
     setAllProducts(data);
   })();
-}, []); */}
+}, []);
 
 
   // Filter States
