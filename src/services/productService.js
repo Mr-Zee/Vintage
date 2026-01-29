@@ -1,4 +1,7 @@
-const API_URL = `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/products`;
+// src/services/productService.js
+const API_URL = process.env.NODE_ENV === 'production' 
+  ? "/api/products"  // Relative path for production
+  : "http://localhost:5000/api/products"; // Local path
 
 export const getProducts = async () => {
   const res = await fetch(API_URL);

@@ -2,10 +2,11 @@ import pg from "pg";
 import dotenv from "dotenv";
 dotenv.config();
 
-const { Pool } = pg;
-
-export const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL || process.env.POSTGRES_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 export async function query(text, params) {
