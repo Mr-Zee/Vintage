@@ -14,6 +14,26 @@ app.use(express.json());
 // Serve uploads publicly
 app.use("/uploads", express.static(path.resolve("uploads")));
 
+// Health Check Route
+app.get("/api/health", async (req, res) => {
+  try {
+    // Check if Database is connected
+    const dbCheck = await query("SELECT NOW()"); 
+    res.json({
+      status: "Online",
+      database: "Connected",
+      server_time: dbCheck.rows[0].now,
+      environment: process.env.NODE_ENV || "development"
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: "Error",
+      database: "Disconnected",
+      error: err.message
+    });
+  }
+});
+
 app.get("/", (_, res) => res.send("Backend is running ✅"));
 app.use("/api/products", productsRoutes);
 
