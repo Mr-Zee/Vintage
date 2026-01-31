@@ -15,7 +15,6 @@ Is it available?`;
 };
 
 export default function ProductCard({ product, variant = "grid" }) {
-  // Using 'reviews' or 'badge' as the manual 'code' based on your current DB screenshot
   const { title, image, material, reviews: code } = product;
 
   if (variant === "list") {

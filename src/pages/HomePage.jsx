@@ -2,7 +2,8 @@ import React from "react"
 import { ChevronDown, ChevronRight } from "lucide-react"
 import SectionCard from "../components/SectionCard"
 import ProductCard from "../components/ProductCard"
-import { products } from "../data/products"
+import { useEffect, useState } from "react" 
+import { getProducts } from "../services/productService"
 import hero from "/Images/hb3.jpg"
 import arrivals from "/Images/hb7.jpeg"
 import offers from "/Images/hb8.jpeg"
@@ -24,6 +25,8 @@ const arrivalsCard =
 function Container({ children, className = "" }) {
   return <div className={["mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8", className].join(" ")}>{children}</div>
 }
+
+
 
 function Hero() {
   return (
@@ -109,6 +112,31 @@ function PromoGrid() {
 }
 
 function Featured() {
+  const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await getProducts();
+        if (Array.isArray(data)) {
+          setFeaturedProducts(data.slice(0, 8)); 
+        } else {
+          console.error("Backend did not return an array:", data);
+          setFeaturedProducts([]); 
+        }
+      } catch (error) {
+        console.error("Fetch error:", error);
+        setFeaturedProducts([]);
+      } finally {
+        setLoading(false); 
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  if (loading) return <div className="py-16 text-center">Loading Collection...</div>;
+
   return (
     <section className="bg-[#f7f4ef] py-16">
       <Container>
@@ -120,7 +148,7 @@ function Featured() {
         </div>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {products.slice(0, 8).map((p) => (
+          {featuredProducts.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
         </div>
