@@ -73,7 +73,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// POST create product - Simplified for Title, Material, Code, and Image
+// POST create product
 router.post("/", upload.single("image"), async (req, res) => {
   try {
     if (!req.file)

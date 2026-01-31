@@ -13,7 +13,7 @@ export const createProduct = async (fd) => {
   
   // If the server sends a 500, don't just .json() it, log the text first
   if (!res.ok) {
-    const errorText = await res.text(); // Get the raw error from the backend
+    const errorText = await res.text();
     console.error("Backend Error Detail:", errorText);
     throw new Error("Server Error: Check Backend Console");
   }
