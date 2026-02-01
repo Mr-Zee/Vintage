@@ -14,7 +14,7 @@ export default function ContactPage() {
     message: ""
   })
 
-  const WHATSAPP_NUMBER = "971567980664"
+  const WHATSAPP_NUMBER = "971543581849"
 
   // 2. Handle WhatsApp redirect
   const handleWhatsAppSubmit = (e) => {

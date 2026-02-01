@@ -1,7 +1,7 @@
 import React from "react";
 import { ShoppingCart } from "lucide-react";
 
-const WHATSAPP_NUMBER = "97167980664";
+const WHATSAPP_NUMBER = "971543581849";
 const buildWhatsAppLink = (product) => {
   const text = `Hi, I want to inquire about:
 ${product.title}
