@@ -1,9 +1,9 @@
 // Determine the base API URL
 const BASE_URL = import.meta.env.MODE === 'production' 
   ? "https://vintag-backend.vercel.app"  
-  : "http://localhost:5000/api";
+  : "http://localhost:5000";
 
-const API_URL = `${BASE_URL}/products`;
+const API_URL = `${BASE_URL}/api/products`;
 
 export const getProducts = async () => {
   try {
