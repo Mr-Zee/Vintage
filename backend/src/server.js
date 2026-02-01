@@ -17,7 +17,6 @@ app.use("/uploads", express.static(path.resolve("uploads")));
 // Health Check Route
 app.get("/api/health", async (req, res) => {
   try {
-    // Check if Database is connected
     const dbCheck = await query("SELECT NOW()"); 
     res.json({
       status: "Online",
