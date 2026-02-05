@@ -218,6 +218,11 @@ export default function AdminPage() {
                     <Trash2 size={16} />
                   </button>
                 </div>
+                {p.badge && (
+          <span className="absolute top-3 left-3 bg-red-500 text-white text-[10px] px-2 py-1 rounded-full uppercase font-bold">
+            {p.badge}
+          </span>
+        )}
               </div>
 
               {/* Content */}
