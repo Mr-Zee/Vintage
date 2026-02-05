@@ -25,6 +25,7 @@ export default function AdminPage() {
     code: "",
     material: "Stainless Steel",
     badge: "",
+    description: "",
   });
   const [file, setFile] = useState(null);
 
@@ -33,7 +34,9 @@ export default function AdminPage() {
     setList(data);
   };
 
-  useEffect(() => { load();}, []);
+  useEffect(() => {
+    load();
+  }, []);
 
   const onEdit = (p) => {
     setEditingId(p.id);
@@ -42,13 +45,20 @@ export default function AdminPage() {
       code: p.reviews,
       material: p.material,
       badge: p.badge || "",
+      description: p.description || "",
     });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const cancelEdit = () => {
     setEditingId(null);
-    setForm({ title: "", code: "", material: "Stainless Steel", badge: "" });
+    setForm({
+      title: "",
+      code: "",
+      material: "Stainless Steel",
+      badge: "",
+      description: "",
+    });
     setFile(null);
   };
 
@@ -61,6 +71,7 @@ export default function AdminPage() {
       fd.append("code", form.code);
       fd.append("material", form.material);
       fd.append("badge", form.badge);
+      fd.append("description", form.description);
 
       if (editingId) {
         if (file) {
@@ -95,7 +106,6 @@ export default function AdminPage() {
           <h1 className="text-3xl font-bold text-neutral-900">
             {editingId ? "Edit Product" : "New Product"}
           </h1>
-         
         </header>
         {/* --- FORM SECTION --- */}
         <form
@@ -112,6 +122,20 @@ export default function AdminPage() {
                 value={form.title}
                 onChange={(e) => setForm({ ...form, title: e.target.value })}
                 required
+              />
+            </div>
+            <div className="sm:col-span-3">
+              <label className="text-sm font-bold uppercase text-neutral-600">
+                Description
+              </label>
+              <textarea
+                rows="3"
+                placeholder="Describe the product details..."
+                className="w-full mt-1 border-b-2 border-neutral-400 py-2 focus:border-neutral-900 outline-none transition bg-transparent resize-none"
+                value={form.description}
+                onChange={(e) =>
+                  setForm({ ...form, description: e.target.value })
+                }
               />
             </div>
 
@@ -219,10 +243,10 @@ export default function AdminPage() {
                   </button>
                 </div>
                 {p.badge && (
-          <span className="absolute top-3 left-3 bg-red-500 text-white text-[10px] px-2 py-1 rounded-full uppercase font-bold">
-            {p.badge}
-          </span>
-        )}
+                  <span className="absolute top-3 left-3 bg-red-500 text-white text-[10px] px-2 py-1 rounded-full uppercase font-bold">
+                    {p.badge}
+                  </span>
+                )}
               </div>
 
               {/* Content */}
@@ -233,6 +257,9 @@ export default function AdminPage() {
                 <h3 className="font-bold text-neutral-900 truncate mb-1">
                   {p.title}
                 </h3>
+                <p className="text-xs text-neutral-500 line-clamp-2 mb-2 italic">
+                  {p.description}
+                </p>
                 <div className="flex justify-between items-center">
                   <span className="text-xs text-neutral-500 font-medium">
                     Code: <span className="text-neutral-900">{p.reviews}</span>
