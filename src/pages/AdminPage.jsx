@@ -221,7 +221,7 @@ export default function AdminPage() {
               <div className="p-4">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-1">{p.material}</p>
                 <h3 className="font-bold text-neutral-900 truncate mb-1">{p.title}</h3>
-                <p className="text-xs text-neutral-500 line-clamp-2 mb-2 italic">{p.description}</p>
+                <p className="text-xs mb-2">{p.description}</p>
                 <span className="text-xs text-neutral-500 font-medium">Code: {p.reviews}</span>
               </div>
             </div>

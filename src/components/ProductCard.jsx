@@ -15,7 +15,7 @@ Is it available?`;
 };
 
 export default function ProductCard({ product, variant = "grid" }) {
-  const { title, image, material, reviews: code } = product;
+  const { title, image, material, reviews: code,description } = product;
 
   if (variant === "list") {
     return (
@@ -37,6 +37,7 @@ export default function ProductCard({ product, variant = "grid" }) {
 
           <div className="flex flex-1 flex-col justify-center">
             <h4 className="text-sm font-semibold">{title}</h4>
+            <p className="text-xs line-clamp-2 mb-2">{description}</p>
             <div className="mt-1 text-sm font-medium text-neutral-500">
               Code: <span className="text-neutral-950">{code}</span>
             </div>
@@ -75,8 +76,9 @@ export default function ProductCard({ product, variant = "grid" }) {
         )}
       </div>
 
-      <div className="p-4 text-center">
+      <div className="p-4">
         <h4 className="line-clamp-1 text-sm font-semibold">{title}</h4>
+        <p className="text-xs mb-2 pt-2">{description}</p>
         <div className="mt-1 text-sm font-medium text-neutral-500">
           Code: <span className="text-neutral-950">{code}</span>
         </div>
