@@ -236,7 +236,15 @@ export default function AdminPage() {
                     <Edit2 size={16} />
                   </button>
                   <button
-                    onClick={() => deleteProduct(p.id).then(load)}
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          "Are you sure you want to delete this product?",
+                        )
+                      ) {
+                        deleteProduct(p.id).then(load);
+                      }
+                    }}
                     className="p-2 bg-white/90 backdrop-blur shadow-sm text-red-600 rounded-full hover:bg-red-600 hover:text-white transition"
                   >
                     <Trash2 size={16} />
