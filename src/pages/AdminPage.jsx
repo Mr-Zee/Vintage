@@ -209,6 +209,11 @@ export default function AdminPage() {
             <div key={p.id} className="group bg-white rounded-3xl border border-neutral-100 overflow-hidden hover:shadow-xl transition-all duration-300">
               <div className="relative aspect-square overflow-hidden bg-neutral-50">
                 <img src={p.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt={p.title} />
+                {p.badge && (
+                  <span className="absolute top-3 left-3 bg-red-500 text-white text-[10px] px-2 py-1 rounded-full uppercase font-bold">
+                   {p.badge}
+                 </span>
+                )}
                 <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                   <button onClick={() => onEdit(p)} className="p-2 bg-white/90 backdrop-blur shadow-sm text-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition">
                     <Edit2 size={16} />
