@@ -4,10 +4,14 @@ import SectionCard from "../components/SectionCard"
 import ProductCard from "../components/ProductCard"
 import { useEffect, useState } from "react" 
 import { getProducts } from "../services/productService"
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+
 import hero from "/Images/hb3.jpg"
+import hero2 from "/Images/hb2.jpg"
+import hero1 from "/Images/hb1.jpg"
 import arrivals from "/Images/hb7.jpeg"
 import offers from "/Images/hb8.jpeg"
-import { Link } from "react-router-dom";
 
 const heroBg = hero;
 
@@ -22,6 +26,30 @@ offers
 const arrivalsCard =
   arrivals;
 
+
+const slides = [
+  {
+    image: heroBg,
+    title: "Crafted to Perfection",
+    subtitle: "PREMIUM SWISS MOVEMENTS",
+    description: "Discover timeless pieces designed with precision. ",
+    cta: "Shop Now"
+  },
+  {
+    image: hero2,
+    title: "New Arrivals",
+    subtitle: "SEASONAL COLLECTION",
+    description: "Experience the latest in luxury design ",
+    cta: "Explore More"
+  },
+  {
+    image: hero1,
+    title: "Exclusive Offers",
+    subtitle: "LIMITED TIME ONLY",
+    description: "Discover our curated selection.",
+    cta: "View Offers"
+  }
+];
 function Container({ children, className = "" }) {
   return <div className={["mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8", className].join(" ")}>{children}</div>
 }
@@ -29,42 +57,88 @@ function Container({ children, className = "" }) {
 
 
 function Hero() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="relative min-h-[94vh] overflow-hidden bg-neutral-950">
-      <img src={heroBg} alt="Watch movement" className="absolute inset-0 h-full w-full object-cover opacity-90" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/85" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(200,154,42,0.18),transparent_50%)]" />
+    <section className="relative min-h-[94vh] w-full overflow-hidden bg-neutral-950">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentSlide}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2 }}
+          className="absolute inset-0"
+        >
+          <img
+            src={slides[currentSlide].image}
+            alt={slides[currentSlide].title}
+            className="absolute inset-0 h-full w-full object-cover opacity-80"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/85" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(200,154,42,0.15),transparent_50%)]" />
+        </motion.div>
+      </AnimatePresence>
 
+      {/* Content */}
       <Container className="relative z-10 flex min-h-[88vh] items-end pb-14 md:pb-20">
-        <div className="max-w-xl">
-          <p className="text-xs font-semibold tracking-[0.35em] text-white/70">PREMIUM SWISS MOVEMENTS</p>
-          <h1 className="mt-4 font-display text-5xl leading-[1.05] text-gold-100 sm:text-6xl">
-            Crafted to<br /><span className="text-gold-300">Perfection</span>
-          </h1>
-          <p className="mt-5 max-w-md text-sm leading-6 text-white/75">
-            Discover timeless pieces designed with precision. Hand-finished details, premium materials, and modern silhouettes.
-          </p>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`content-${currentSlide}`}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            transition={{ duration: 0.7 }}
+            className="max-w-xl"
+          >
+            <p className="text-xs font-semibold tracking-[0.35em] text-white/70 uppercase">
+              {slides[currentSlide].subtitle}
+            </p>
+            <h1 className="mt-4 font-display text-5xl leading-[1.05] text-gold-100 sm:text-6xl">
+              {slides[currentSlide].title}
+            </h1>
+            <p className="mt-5 max-w-md text-sm leading-6 text-white/75">
+              {slides[currentSlide].description}
+            </p>
 
-          <div className="mt-7 flex flex-wrap gap-3">
-            <button className="btn-primary px-8">
-              Shop Now <ChevronRight className="h-4 w-5" />
-            </button>
-           
-            {/* <button className="btn-outline">Learn More</button> */}
-          </div>
-        </div>
+            <div className="mt-7">
+              <Link to="/products" className="btn-primary px-8 py-4 inline-flex items-center gap-2 font-medium text-base">
+                {slides[currentSlide].cta} <ChevronRight className="h-4 w-5" />
+              </Link>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </Container>
 
-      <div className="absolute bottom-4 left-0 right-0 z-10 flex justify-center">
-        <div className="flex items-center gap-3 text-white/70">
-          <span className="h-1.5 w-1.5 rounded-full bg-white/50" />
-          <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
-          <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
-          <ChevronDown className="h-5 w-5 animate-bounce" />
+      {/* Controls */}
+      <div className="absolute bottom-6 left-0 right-0 z-20 flex flex-col items-center gap-6">
+        <div className="flex items-center gap-3">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`h-1.5 transition-all duration-500 rounded-full ${
+                index === currentSlide ? "w-6 bg-white" : "w-2 bg-white/30"
+              }`}
+            />
+          ))}
         </div>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        >
+          <ChevronDown className="h-6 w-6 text-white/50" />
+        </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
 function PromoGrid() {
