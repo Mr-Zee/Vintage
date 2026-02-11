@@ -7,13 +7,12 @@ import { getProducts } from "../services/productService"
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-import hero from "/Images/hb3.jpg"
-import hero2 from "/Images/hb2.jpg"
-import hero1 from "/Images/hb1.jpg"
 import arrivals from "/Images/hb7.jpeg"
 import offers from "/Images/hb8.jpeg"
 
-const heroBg = hero;
+const heroBg = "https://readdy.ai/api/search-image?query=cinematic%20luxury%20womens%20watch%20macro%20photography%20with%20elegant%20rose%20gold%20timepiece%20rotating%20showing%20intricate%20details%20soft%20lighting%20on%20polished%20surface%20professional%20studio%20photography%20feminine%20sophisticated%20craftsmanship%20soft%20pink%20background%20with%20golden%20accents&width=1920&height=1080&seq=ladyhero1&orientation=landscape";
+const Hero2 = "https://readdy.ai/api/search-image?query=luxury%20womens%20watches%20display%20with%20dramatic%20soft%20lighting%20professional%20product%20photography%20elegant%20arrangement%20of%20feminine%20timepieces%20sophisticated%20composition%20delicate%20textures%20soft%20pink%20and%20cream%20background%20with%20golden%20highlights&width=1920&height=1080&seq=ladyhero3&orientation=landscape"
+const Hero3 = "https://readdy.ai/api/search-image?query=elegant%20female%20hand%20wearing%20luxury%20diamond%20watch%20with%20soft%20romantic%20lighting%20professional%20jewelry%20photography%20graceful%20wrist%20movement%20sparkling%20timepiece%20sophisticated%20feminine%20styling%20warm%20golden%20tones%20blurred%20soft%20pink%20background&width=1920&height=1080&seq=ladyhero2&orientation=landscape"
 
 const watchesCard =
 "https://readdy.ai/api/search-image?query=elegant%20luxury%20womens%20watches%20collection%20displayed%20on%20soft%20pink%20silk%20fabric%20professional%20product%20photography%20studio%20lighting%20multiple%20rose%20gold%20and%20diamond%20watches%20sophisticated%20feminine%20arrangement%20delicate%20styling%20warm%20tones&width=800&height=1000&seq=ladycat1&orientation=portrait"
@@ -36,14 +35,14 @@ const slides = [
     cta: "Shop Now"
   },
   {
-    image: hero2,
+    image: Hero2,
     title: "New Arrivals",
     subtitle: "SEASONAL COLLECTION",
     description: "Experience the latest in luxury design ",
     cta: "Explore More"
   },
   {
-    image: hero1,
+    image: Hero3,
     title: "Exclusive Offers",
     subtitle: "LIMITED TIME ONLY",
     description: "Discover our curated selection.",
