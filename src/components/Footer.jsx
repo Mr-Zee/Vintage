@@ -1,6 +1,7 @@
 import React from "react"
 import { Watch, Instagram, Twitter, Facebook, MessageCircle } from "lucide-react"
 import { Link } from "react-router-dom";
+import Logo from "../../Images/logo2.png"
 
 const supportLinks = [
   { label: "Contact Us", to: "/contact" },
@@ -36,10 +37,15 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-4">
           <div>
             <div className="inline-flex items-center gap-2">
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-white/10 ring-1 ring-white/15">
+              {/* <span className="grid h-10 w-10 place-items-center rounded-full bg-white/10 ring-1 ring-white/15">
                 <Watch className="h-5 w-5" />
-              </span>
-              <span className="font-semibold tracking-wide">Watch Store</span>
+              </span> */}
+              {/* <span className="font-semibold tracking-wide">VINTAG</span> */}
+               <img 
+                            src={Logo} 
+                            alt="VINTAG Logo" 
+                            className="h-8 w-auto object-contain hover:opacity-80 transition-opacity" 
+                          />
             </div>
             <p className="mt-4 text-sm leading-6 text-white/75">
               Crafting timeless elegance with premium watches since 2025.

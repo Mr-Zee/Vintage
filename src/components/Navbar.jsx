@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { NavLink, Link, useLocation } from "react-router-dom"
 import { Search, Heart, ShoppingBag, Watch, Menu, X } from "lucide-react"
+import Logo from "../../Images/logo1.webp"
 
 function Container({ children, className = "" }) {
   return <div className={["mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8", className].join(" ")}>{children}</div>
@@ -37,10 +38,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="inline-flex items-center gap-2 text-white/90 hover:text-white z-50">
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-white/10 ring-1 ring-gold-300/50">
-              <Watch className="h-5 w-5 text-gold-300" />
-            </span>
-            <span className="font-semibold tracking-widest text-lg">VINTAG</span>
+            <img 
+              src={Logo} 
+              alt="VINTAG Logo" 
+              className="h-12 w-auto object-contain hover:opacity-80 transition-opacity" 
+            />
           </Link>
 
           {/* Desktop Navigation */}
