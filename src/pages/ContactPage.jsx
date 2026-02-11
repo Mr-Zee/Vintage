@@ -6,7 +6,6 @@ function Container({ children, className = "" }) {
 }
 
 export default function ContactPage() {
-  // 1. Setup state for form fields
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -14,9 +13,8 @@ export default function ContactPage() {
     message: ""
   })
 
-  const WHATSAPP_NUMBER = "971543581849"
+  const WHATSAPP_NUMBER = "971567980664"
 
-  // 2. Handle WhatsApp redirect
   const handleWhatsAppSubmit = (e) => {
     e.preventDefault()
 
@@ -31,11 +29,9 @@ ${formData.message}`
 
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
     
-    // Open WhatsApp in a new tab
     window.open(whatsappUrl, "_blank")
   }
 
-  // 3. Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
