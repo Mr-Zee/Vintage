@@ -148,7 +148,7 @@ function PromoGrid() {
           <SectionCard
             title="Watches"
             subtitle="Timeless Elegance"
-            priceText="From AED 1,899"
+            priceText=""
             cta="Shop Now"
             image={watchesCard}
             className="lg:col-span-2 min-h-[250px] sm:min-h-[300px]"
@@ -157,7 +157,7 @@ function PromoGrid() {
             <SectionCard
               title="Offers"
               subtitle="Exquisite Craftsmanship"
-              priceText="From AED 799"
+              priceText=""
               cta="Explore"
               image={banglesCard}
               align="right"
