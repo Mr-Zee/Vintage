@@ -70,7 +70,7 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold tracking-wide">Shop</h4>
             <ul className="mt-4 space-y-3 text-sm text-white/75">
-              {["Watches", "Bangles", "New Arrivals", "Best Sellers"].map(
+              {["Watches"].map(
                 (t) => (
                   <li key={t}>
                     <Link className="hover:text-white" to="/products">
