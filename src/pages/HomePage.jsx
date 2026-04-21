@@ -46,7 +46,7 @@ const slides = [
     title: "Exclusive Offers",
     subtitle: "LIMITED TIME ONLY",
     description: "Discover our curated selection.",
-    cta: "View Offers"
+    cta: "Explore Now"
   }
 ];
 function Container({ children, className = "" }) {
@@ -240,7 +240,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <PromoGrid />
+      {/* <PromoGrid /> */}
       <Featured />
     </>
   )
