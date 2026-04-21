@@ -53,12 +53,12 @@ export default function ProductsPage() {
     })();
   }, []);
 
-  const [material, setMaterial] = useState({ Gold: false, Silver: false, Platinum: false, "Stainless Steel": false, Leather: false })
+  const [material, setMaterial] = useState({"Stainless Steel": false, Leather: false })
 
   useEffect(() => { setCurrentPage(1); }, [material, sort]);
 
   const counts = useMemo(() => {
-    const c = { material: { Gold: 0, Silver: 0, Platinum: 0, "Stainless Steel": 0, Leather: 0 } }
+    const c = { material: {"Stainless Steel": 0, Leather: 0 } }
     allProducts.forEach((p) => {
       if (c.material[p.material] !== undefined) c.material[p.material]++
     })
@@ -104,7 +104,7 @@ export default function ProductsPage() {
 
       <div className="pt-4">
         <button 
-          onClick={() => setMaterial({ Gold: false, Silver: false, Platinum: false, "Stainless Steel": false, Leather: false })}
+          onClick={() => setMaterial({"Stainless Steel": false, Leather: false })}
           className="text-sm font-bold text-neutral-400 hover:text-neutral-900"
         >
           CLEAR

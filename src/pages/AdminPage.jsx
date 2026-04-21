@@ -34,7 +34,7 @@ export default function AdminPage() {
     setModal({ isOpen: true, title, message, type, onConfirm });
   };
 
-  const materialOptions = ["Gold", "Silver", "Platinum", "Stainless Steel", "Leather"];
+  const materialOptions = ["Stainless Steel", "Leather"];
 
   const load = async () => {
     const data = await getProducts();
